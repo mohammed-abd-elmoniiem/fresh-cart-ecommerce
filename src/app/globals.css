@@ -31,3 +31,7 @@ body {
 input:focus {
   outline: none;
 }
+
+@theme {
+  --color-main: #00ac25;
+}

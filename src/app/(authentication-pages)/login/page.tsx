@@ -4,7 +4,7 @@ import React from 'react'
 
 export default function Login() {
   return (
-    <div className='flex items-center min-h-screen container mx-auto'>
+    <div className='flex items-center justify-center gap-4 p-8 container mx-auto'>
       <Welcome/>
       <LoginForm/>
     </div>

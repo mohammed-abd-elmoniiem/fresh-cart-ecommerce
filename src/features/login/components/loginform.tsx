@@ -10,9 +10,11 @@ import loginRequest from '../loginAction'
 import { toast } from 'react-toastify'
 import { useRouter } from 'next/navigation'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
- import { faMagnifyingGlass, faCircleStop } from "@fortawesome/free-solid-svg-icons";
+ import { faMagnifyingGlass, faCircleStop, faIndent, faInfo, faSpinner } from "@fortawesome/free-solid-svg-icons";
 import Link from 'next/link'
 import { setToken } from '../cookie/tokenCookie'
+import { setUserInfo } from '../reducers/authReducer'
+import { useDispatch } from 'react-redux'
 
 
 
@@ -20,12 +22,14 @@ export default function LoginForm() {
 
   const router = useRouter()
 
+  const dispatch = useDispatch()
 
 
 
 
 
-      const {register,setError,handleSubmit,formState:{errors}} = useForm<loginFormValues >({
+
+      const {register,setError,handleSubmit,formState:{errors,isSubmitting}} = useForm<loginFormValues >({
     defaultValues:{
       
       email:'mohamed.abd.elmoniiem@gmail.com',
@@ -51,7 +55,7 @@ export default function LoginForm() {
   
      if(res?.success === false){
 
-      toast.error(res?.message || 'this is a problem, try again later',{
+      toast.error(res?.message || 'there is a problem, try again later',{
         position:'top-center',
         autoClose:5000,
       })
@@ -65,13 +69,34 @@ export default function LoginForm() {
           
       });
      }else{
+       
 
+      // indication  to the user
       toast.success(res?.message || 'logged in successfully',{
         position:'top-center',
         autoClose:5000,
       })
 
-      setToken(res.data.token,values.rememberMe)
+
+      // set token in cookies
+
+      setToken(res.data.token,values.rememberMe);
+      // console.log(res.data)
+
+
+      // set user info in redux store
+
+      dispatch(
+            setUserInfo({
+                isAuthentication:true,
+                userInfo:res?.data.user
+        
+          })
+      )
+
+     
+
+
 
       setTimeout(()=>{
         router.push('/')
@@ -85,6 +110,9 @@ export default function LoginForm() {
 
   return (
    <form className="grid grid-cols-1 gap-2 bg-gray-50    text-[13px] w-1/2 min-w-100 max-w-md p-4 rounded-2xl" action="#" onSubmit={handleSubmit(onSubmit)}>
+    <h2 className="uppercase text-lg text-center">
+      sign in
+    </h2>
 
             
              <div className=' rounded-md '>
@@ -136,18 +164,25 @@ export default function LoginForm() {
             </div>
 
 
-            <button type="submit" className="bg-blue-600 p-2 rounded-md  text-[17px]">
+            <button type="submit" className="bg-blue-600 p-2 rounded-md  text-[17px] text-white">
+              {
+                isSubmitting ?<>
+                <FontAwesomeIcon icon={faSpinner} spin />
+                </>:
+                 <FontAwesomeIcon icon={faIndent} />
+
+              }
 
              
- <FontAwesomeIcon icon={faMagnifyingGlass} />
-      <FontAwesomeIcon icon={faCircleStop} />
+
+     
               
               login
               </button>
 
             <p className=" font-light text-neutral-600">
               don't have an account? 
-              < Link href="/signup" className="font-medium text-blue-600">register here</Link>
+              < Link href="/signup" className="font-light text-blue-600 ml-2">register here</Link>
             </p>
           </form>
   )

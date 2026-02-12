@@ -1,4 +1,4 @@
-
+'use client'
 
 import React from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -6,9 +6,20 @@ import Link from 'next/link'
 import Image from 'next/image'
 
 import logo from '../../../assets/freshcart-logo.svg'
+import { faCartFlatbed, faFileArrowUp, faHeart, faSignIn, faSignOut, faSignOutAlt, faUser, faUserPlus } from '@fortawesome/free-solid-svg-icons'
+import { Fanwood_Text } from 'next/font/google'
+import { useSelector } from 'react-redux'
+import { stateStype } from '@/src/store/reduxStore/reduxStore'
+import  useLogOut  from '@/src/hooks/useLogOut'
+
+
 
 
 export default function NavBar() {
+
+  const {logout}  = useLogOut()
+
+  const isAuthenticated = useSelector((state:stateStype)=>state.authReducer.isAuthentication)
   return (
     <div>
 
@@ -90,39 +101,68 @@ export default function NavBar() {
 
           <ul className="flex gap-2">
 
-            <li className="">
-              <Link href={'/wishlist'}>
+            <li >
+              <Link href={'/wishlist'}className="flex flex-col gap-1 justify-center items-center hover:text-main " >
+                
+                <FontAwesomeIcon icon={faHeart}/>
                 wishlist
               </Link>
             </li>
 
-            <li className="">
+            {/* <li className="">
               <Link href={'/wishlist'}>
                 compare
               </Link>
-            </li>
+            </li> */}
             
             <li className="">
-              <Link href={'/cart'}>
+              <Link href={'/cart'} className="flex flex-col gap-1 justify-center items-center hover:text-main ">
+              <FontAwesomeIcon icon={faCartFlatbed}/>
                 cart
               </Link>
             </li>
             
-            <li className="">
-              <Link href={'/profile'}>
-                account
-              </Link>
-            </li>
+           
+            {
+              isAuthenticated?<>
 
-             <li className="">
-              <Link href={'/login'}>
-                login
-              </Link>
-            </li> <li className="">
-              <Link href={'/signup'}>
-                sign up
-              </Link>
-            </li>
+
+                      <li className="">
+                      <Link href={'/profile'} className="flex flex-col gap-1 justify-center items-center hover:text-main ">
+                      <FontAwesomeIcon icon={faUser}/>
+                        account
+                      </Link>
+                    </li>
+                      <li className="" >
+                      <button 
+                      onClick={logout}
+                      className="flex flex-col gap-1 justify-center items-center hover:text-red-500 ">
+                        <FontAwesomeIcon icon={faSignOutAlt}/>
+                        log out
+                      </button>
+                      
+                        
+                    </li>
+              </>:<>
+                      <li className="">
+                    <Link href={'/login'} className="flex flex-col gap-1 justify-center items-center hover:text-main ">
+                    <FontAwesomeIcon icon={faSignIn}/>
+
+                      login
+                    </Link>
+                  </li> <li className="">
+                    <Link href={'/signup'} className="flex flex-col gap-1 justify-center items-center hover:text-main ">
+                      <FontAwesomeIcon icon={faUserPlus}/>
+                      sign up
+                    </Link>
+                  </li>
+              
+              </>
+            }
+
+           
+
+           
 
 
           </ul>

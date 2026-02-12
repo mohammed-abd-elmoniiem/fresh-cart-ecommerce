@@ -12,6 +12,8 @@ import { useRouter } from 'next/navigation'
 import { set } from 'zod'
 
 import Link from 'next/link'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faSpinner, faUserPlus } from '@fortawesome/free-solid-svg-icons'
 
 
 
@@ -24,7 +26,7 @@ export default function SignUpForm() {
 
 
 
-      const {register,setError,handleSubmit,formState:{errors}} = useForm<newUser >({
+      const {register,setError,handleSubmit,formState:{errors , isSubmitting}} = useForm<newUser >({
     defaultValues:{
       name:'moahmed abd elmoniem',
       email:'mohamed.abd.elmoniiem@gmail.com',
@@ -82,7 +84,8 @@ export default function SignUpForm() {
 
 
   return (
-   <form className="grid grid-cols-1 gap-2 bg-gray-50    text-[13px] w-1/2 min-w-100 max-w-md p-4 rounded-2xl" action="#" onSubmit={handleSubmit(onSubmit)}>
+   <form className="grid grid-cols-1 gap-2 bg-gray-50 items-center justify-center   text-[13px] w-1/2 min-w-100 max-w-md p-4 rounded-2xl" action="#" onSubmit={handleSubmit(onSubmit)}>
+    <h2 className="capitalize  text-center   text-2xl"> create your account</h2>
 
             <div className=' rounded-md  '>
               <label htmlFor="name" className="capitalize font-light text-md ml-1">Your name</label>
@@ -150,7 +153,7 @@ export default function SignUpForm() {
                 <input {...register('terms')} type='checkbox' className=""/>
                 <label htmlFor="terms" className="font-light text-neutral-700 text-[12px] m-4">I accept the 
                   
-                  <Link className="font-medium text-primary-600 hover:underline dark:text-primary-500" href="terms">Terms and Conditions</Link>
+                  <Link className="font-light text-blue-600" href="terms">Terms and Conditions</Link>
                   
                   </label>
               </div>
@@ -162,9 +165,22 @@ export default function SignUpForm() {
             </div>
 
 
-            <button type="submit" className="bg-blue-600 p-2 rounded-md  text-[17px]">Create an account</button>
-            <p className=" font-light text-neutral-600">
-              Already have an account? < Link href="/login" className="font-medium text-blue-600">Login here</Link>
+            <button type="submit" className="bg-blue-600 text-white p-2 rounded-md w-fit mx-auto  text-[17px] flex gap-2 items-center justify-center">
+              {
+                 isSubmitting ?
+                 <>
+                 <FontAwesomeIcon icon={faSpinner} spin/>
+                 </>:<>
+
+                 <FontAwesomeIcon icon={faUserPlus}/>
+
+                 
+                 </>
+
+              }
+              Create an account</button>
+            <p className=" font-light text-neutral-600 text-center">
+              Already have an account? < Link href="/login" className="font-light text-blue-600">Login here</Link>
             </p>
           </form>
   )
