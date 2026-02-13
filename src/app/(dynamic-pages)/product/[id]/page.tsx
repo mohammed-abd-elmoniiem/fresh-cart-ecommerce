@@ -1,7 +1,13 @@
+import SingleProductScreen from '@/src/features/home/singleProduct/singleProduct.screen';
 import React from 'react'
 
-export default function Product() {
+export default async function Product({params}:{params:Promise<{id:string}>}) {
+
+  const {id} = await params;
   return (
-    <div>Product</div>
+    <div>
+      <h1>{id}</h1>
+      <SingleProductScreen id={id} />
+    </div>
   )
 }

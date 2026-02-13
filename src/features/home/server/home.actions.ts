@@ -57,7 +57,7 @@ export async function getAllProducts():Promise<productData[]>{
     id: '6428ebc6dc1175abc65ca0b9'
         }
        
-        ,
+        
 
 ]
     }
