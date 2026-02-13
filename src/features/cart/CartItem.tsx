@@ -3,6 +3,9 @@ import Image from 'next/image'
 import type { Product } from './cart.type'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTrash } from '@fortawesome/free-solid-svg-icons'
+import { useDispatch } from 'react-redux'
+import { updateCountItemCart } from './cart.actions'
+import { updateCart } from './cartReducer/cartReducer'
 
 interface Props {
   product: Product
@@ -11,16 +14,35 @@ interface Props {
 export default function CartItem({ product }: Props) {
   const id = (product as any).id ?? (product as any)._id ?? ''
 
+  const dispatch = useDispatch()
 
   const unitPrice = Number((product as any).priceAfterDiscount ?? (product as any).price ?? 0)
 
-  const initialQty = Number((product as any).cartQuantity ?? (product as any).quantity ?? 1)
+  const initialQty = product.count ?? 1
   const [qty, setQty] = useState<number>(initialQty)
 
   const subtotal = useMemo(() => unitPrice * qty, [unitPrice, qty])
 
+
+  const increaseQty = async()=>{
+        try{
+              const response = await updateCountItemCart(id,qty );
+              console.log('response update cart',response)
+              dispatch(
+                updateCart(response)
+              )
+            }
+            catch(error){
+              console.log('Error updating cart item quantity:', error)
+            }
+  }
+
   const increase = useCallback(() => {
     setQty((q) => q + 1)
+    increaseQty()
+
+    
+    
   }, [])
 
   const decrease = useCallback(() => {

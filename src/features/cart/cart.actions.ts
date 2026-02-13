@@ -90,3 +90,51 @@ export async function fetchLoggedUserCart():Promise<CartData  >{
     }
 
 }
+
+
+export async function updateCountItemCart(productId:string , count :number):Promise<CartData  >{
+
+    const token = await getToken()
+    console.log(token,'token in update cart')
+
+
+    const options:AxiosRequestConfig={
+        url:`https://ecommerce.routemisr.com/api/v2/cart/${productId}`,
+        method:'PUT',
+        headers:{
+            token,
+            "Content-Type":'application/json'
+        },
+        data:{
+            count:2
+        }
+    }
+
+    
+
+    try{
+       const response = await axios.request(options)
+       console.log('cart increae qty',response.data)
+       return response.data
+    }catch(error){
+                const cartData:CartData={
+            status: 'error',
+            message: '',
+            numOfCartItems: 0,
+            cartId: '',
+            data: {
+                _id: '',
+                cartOwner: '',
+                products: [],
+                createdAt: '',
+                updatedAt: '',
+                __v: 0,
+                totalCartPrice: 0
+            }
+
+        };
+      
+        return cartData
+    }
+
+}
