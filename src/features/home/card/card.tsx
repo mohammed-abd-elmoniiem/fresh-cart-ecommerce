@@ -7,6 +7,9 @@ import { productData } from '../../../utils/types'
 import { addToCart } from '../../cart/cart.actions'
 import { toast } from 'react-toastify'
 import { addProductToCart } from '../../cart/cart.servcies'
+import { updateCart } from '../../cart/cartReducer/cartReducer'
+import { useDispatch } from 'react-redux'
+import { CartData } from '../../cart/cart.type'
 
 interface CardProps {
   product: productData
@@ -17,8 +20,7 @@ export default function Card({ product }: CardProps) {
   const price = product.price
   const discounted = product.priceAfterDiscount
 
-
-  
+  const dispatch = useDispatch()
 
   return (
     <div
@@ -82,11 +84,16 @@ export default function Card({ product }: CardProps) {
       <div className="flex gap-3 p-3 pt-0">
         <button
           type="button"
-          className="flex-1 px-3 py-2 bg-emerald-500 hover:bg-emerald-600 text-white text-sm rounded transition"
+          className="flex-1 px-3 py-2 bg-main text-white text-sm rounded transition"
 
-           onClick={()=>{
+           onClick={async ()=>{
                 console.log(product.id)
-                addProductToCart(product.id)
+               const response = await addProductToCart(product.id)
+               if(response.status != 'error'){
+                  dispatch(
+                    updateCart(response)
+                  )
+               }
 
 
               }}
@@ -95,7 +102,7 @@ export default function Card({ product }: CardProps) {
         </button>
         <button
           type="button"
-          className="px-3 py-2 bg-white border border-gray-200 text-sm rounded hover:bg-gray-50 transition"
+          className="px-3 py-2 bg-main/5 border border-main text-sm rounded hover:bg-gray-50 transition"
         >
           Wishlist
         </button>

@@ -9,7 +9,7 @@ export async function getAllProducts():Promise<productData[]>{
 
 
     const option:AxiosRequestConfig ={
-        url:'https://ecommerce.routemisr.com/api/v1/products?limit=10',
+        url:'https://ecommerce.routemisr.com/api/v1/products?limit=30',
         method:'GET'
     }
 

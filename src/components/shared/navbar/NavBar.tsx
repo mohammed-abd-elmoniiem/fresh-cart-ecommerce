@@ -9,7 +9,7 @@ import logo from '../../../assets/freshcart-logo.svg'
 import { faCartFlatbed, faFileArrowUp, faHeart, faSignIn, faSignOut, faSignOutAlt, faUser, faUserPlus } from '@fortawesome/free-solid-svg-icons'
 import { Fanwood_Text } from 'next/font/google'
 import { useSelector } from 'react-redux'
-import { stateStype } from '@/src/store/reduxStore/reduxStore'
+import { stateStype, storeType } from '@/src/store/reduxStore/reduxStore'
 import  useLogOut  from '@/src/hooks/useLogOut'
 
 
@@ -17,11 +17,15 @@ import  useLogOut  from '@/src/hooks/useLogOut'
 
 export default function NavBar() {
 
+  
+
   const {logout}  = useLogOut()
+
+  const numsOfItems = useSelector((state:stateStype)=>state.cartReducer.numOfCartItems)
 
   const isAuthenticated = useSelector((state:stateStype)=>state.authReducer.isAuthentication)
   return (
-    <div>
+    <div className=''>
 
       <div className="top flex justify-between text-[12px] font-light capitalize container mx-auto border-b border-dashed  border-neutral-400">
         <ul className="flex gap-3">
@@ -80,7 +84,7 @@ export default function NavBar() {
         </ul>
       </div>
 
-      <div className="center flex justify-between items-center flex-wrap  text-sm  capitalize container mx-auto p-2 ">
+      <div className="center flex justify-center sm:justify-between items-center gap-2 flex-wrap  text-sm  capitalize container mx-auto p-2 ">
 
         <div className="logo">
 
@@ -90,6 +94,8 @@ export default function NavBar() {
          
 
         </div>
+
+
 
         <div className="search border border-neutral-600/40 rounded-md p-1">
 
@@ -116,9 +122,13 @@ export default function NavBar() {
             </li> */}
             
             <li className="">
-              <Link href={'/cart'} className="flex flex-col gap-1 justify-center items-center hover:text-main ">
+              <Link href={'/cart'} className="flex flex-col gap-1 justify-center items-center hover:text-main relative ">
               <FontAwesomeIcon icon={faCartFlatbed}/>
                 cart
+
+                <span className="absolute -top-1 -right-1 bg-main flex justify-center items-center  w-4 text-[10px]  aspect-square text-white rounded-full">
+                  {numsOfItems}
+                </span>
               </Link>
             </li>
             

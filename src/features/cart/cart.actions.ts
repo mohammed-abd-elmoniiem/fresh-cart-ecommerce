@@ -2,11 +2,11 @@
 
 import axios, { Axios, AxiosRequestConfig } from "axios"
 import { getToken } from "../login/cookie/tokenCookie"
-import { CartProductData } from "./cart.type"
+import { CartData } from "./cart.type"
 
 
 
-export async function addToCart(productId:string):Promise<CartProductData | null >{
+export async function addToCart(productId:string):Promise<CartData  >{
 
     const token = await getToken()
 
@@ -28,7 +28,24 @@ export async function addToCart(productId:string):Promise<CartProductData | null
        console.log(response.data)
        return response.data
     }catch(error){
-        return null
+                const cartData:CartData={
+            status: 'empty',
+            message: '',
+            numOfCartItems: 0,
+            cartId: '',
+            data: {
+                _id: '',
+                cartOwner: '',
+                products: [],
+                createdAt: '',
+                updatedAt: '',
+                __v: 0,
+                totalCartPrice: 0
+            }
+
+        };
+      
+        return cartData
     }
 
 }
