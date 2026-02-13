@@ -12,12 +12,11 @@ interface Props {
 }
 
 export default function CartItem({ product }: Props) {
-  const id = (product as any).id ?? (product as any)._id ?? ''
+  const id = product.product.id
 
   const dispatch = useDispatch()
 
-  const unitPrice = Number((product as any).priceAfterDiscount ?? (product as any).price ?? 0)
-
+  const unitPrice = product.price
   const initialQty = product.count ?? 1
   const [qty, setQty] = useState<number>(initialQty)
 

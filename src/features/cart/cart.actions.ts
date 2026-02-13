@@ -106,7 +106,7 @@ export async function updateCountItemCart(productId:string , count :number):Prom
             "Content-Type":'application/json'
         },
         data:{
-            count:2
+            count
         }
     }
 
