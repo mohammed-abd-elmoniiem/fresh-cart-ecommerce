@@ -6,7 +6,7 @@ import { CartData } from "../cart.type";
 const initialState:CartData = {
     status: 'empty',
     message: '',
-    numOfCartItems: 7,
+    numOfCartItems: 0,
     cartId: '',
     data: {
         _id: '',

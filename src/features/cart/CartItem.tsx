@@ -1,10 +1,13 @@
+'use client'
+
+
 import React, { useCallback, useMemo, useState } from 'react'
 import Image from 'next/image'
 import type { Product } from './cart.type'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTrash } from '@fortawesome/free-solid-svg-icons'
 import { useDispatch } from 'react-redux'
-import { updateCountItemCart } from './cart.actions'
+import { clearUserCart, removeItemCart, updateCountItemCart } from './cart.actions'
 import { updateCart } from './cartReducer/cartReducer'
 
 interface Props {
@@ -13,6 +16,8 @@ interface Props {
 
 export default function CartItem({ product }: Props) {
   const id = product.product.id
+
+  console.log('product id:', id, product.product.id, product.product._id)
 
   const dispatch = useDispatch()
 
@@ -25,7 +30,8 @@ export default function CartItem({ product }: Props) {
 
   const updateQty = async(count:number)=>{
         try{
-              const response = await updateCountItemCart(id,count );
+          console.log('update cart item quantity', count, typeof count)
+              const response = await updateCountItemCart(product.product.id,count );
               console.log('response update cart',response)
               dispatch(
                 updateCart(response)
@@ -36,9 +42,12 @@ export default function CartItem({ product }: Props) {
             }
   }
 
+  
+
+
   const increase = useCallback(() => {
     setQty((q) => q + 1)
-    updateQty(qty)
+   
 
     
     
@@ -46,15 +55,24 @@ export default function CartItem({ product }: Props) {
 
   const decrease = useCallback(() => {
     setQty((q) => Math.max(1, q - 1))
-    updateQty(qty)
+   
 
   }, [])
 
-  const remove = useCallback(() => {
-    // placeholder: implement removal logic where this component is used
-    // e.g. call a context / store action or lift state up
+  const remove = async() => {
+    
     console.log('remove item', id)
-  }, [id])
+
+    try{
+      const response = await removeItemCart(id)
+      dispatch(
+        updateCart(response)
+      )
+      console.log('remove item response', response)
+    }catch(error){
+      console.log('Error removing cart item:', error)
+    }
+  }
 
   return (
     <div className="flex items-center w-full gap-4 p-2 bg-white rounded-lg shadow-sm border border-neutral-200">
@@ -89,16 +107,24 @@ export default function CartItem({ product }: Props) {
             <div className="flex items-center border border-neutral-200 rounded-md overflow-hidden">
               <button
                 type="button"
-                onClick={decrease}
+                onClick={()=>{
+                  decrease()
+                   updateQty(qty-1)
+                }}
                 className="px-3 py-1 text-sm text-gray-700 hover:bg-gray-100"
                 aria-label="Decrease quantity"
+
+                
               >
                 −
               </button>
               <div className="px-4 py-1 text-sm font-medium text-gray-900 bg-white">{qty}</div>
               <button
                 type="button"
-                onClick={increase}
+                onClick={()=>{
+                  increase()
+                   updateQty(qty+1)
+                }}
                 className="px-3 py-1 text-sm text-gray-700 hover:bg-gray-100"
                 aria-label="Increase quantity"
               >

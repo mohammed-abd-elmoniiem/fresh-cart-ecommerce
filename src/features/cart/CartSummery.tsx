@@ -1,7 +1,26 @@
 import React, { useMemo } from 'react'
 import type { Product } from './cart.type'
+import { clearUserCart } from './cart.actions';
+import { useDispatch } from 'react-redux';
+import { updateCart } from './cartReducer/cartReducer';
 
 export default function CartSummary({ products }: { products: Product[] }) {
+    const dispatch = useDispatch()
+  
+    const clearCart = async() => {
+          try{
+                const response = await clearUserCart();
+                console.log('response update cart',response)
+                dispatch(
+                  updateCart(response)
+                )
+              }
+              catch(error){
+                console.log('Error clearing cart:', error)
+              }
+    }
+
+
   const { itemCount, total } = useMemo(() => {
     let items = 0
     let sum = 0
@@ -41,6 +60,18 @@ export default function CartSummary({ products }: { products: Product[] }) {
       <div className="mt-4">
         <button className="w-full px-4 py-3 bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-medium rounded-md">
           Checkout
+        </button>
+      </div>
+
+       <div className="mt-4">
+        <button className="w-full px-4 py-3 bg-rose-600 hover:bg-rose-700 text-white text-sm font-medium rounded-md"
+        onClick={()=>{
+          clearCart()
+
+        }}
+        
+        >
+          clear cart
         </button>
       </div>
     </div>
