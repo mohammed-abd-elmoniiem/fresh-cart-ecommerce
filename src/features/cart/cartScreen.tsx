@@ -6,16 +6,17 @@ import React from 'react'
 import { useSelector } from 'react-redux'
 import CartItem from './CartItem'
 import CartSummary from './CartSummery'
+import { Product } from './cart.type'
 
 export default function CartScreen() {
 
-   const cartData =  useSelector((state:stateStype)=>state.cartReducer)
+   const cartData =  useSelector((state:stateStype)=>state.cart)
   return (
 
     <div className='grid  gap-2 md:grid-cols-2 w-full relative'>
         <div className=' w-full '>
 
-            {cartData.data.products.map(product=> <CartItem product={product}/>)}
+            {cartData.data.products.map((product:Product)=> <CartItem product={product}/>)}
         </div>
         <div className="w-full">
              <CartSummary products={cartData.data.products} />

@@ -1,4 +1,6 @@
 
+
+'use server'
 import "./globals.css";
 import { Roboto } from 'next/font/google'
 
@@ -11,6 +13,7 @@ import { useDispatch } from "react-redux";
 import { fetchUserInfo } from "../features/login/reducers/authReducer";
 
 
+
 config.autoAddCss = false
 
 
@@ -18,11 +21,13 @@ const roboto = Roboto({
   subsets: ['latin-ext'],
   weight: ['100', '200', '300', '400', '500', '600', '700', '800', '900']
 })
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+
+ 
 
 
 

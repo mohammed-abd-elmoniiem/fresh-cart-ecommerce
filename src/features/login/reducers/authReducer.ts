@@ -5,7 +5,7 @@ import build from "next/dist/build";
 import { useDispatch } from "react-redux";
 
 
-export type initialStatetype = {
+export type authStatetype = {
     isAuthentication:boolean,
     userInfo:userInfotype | null
 }
@@ -18,7 +18,7 @@ export type userInfotype = {
 }
 
  
-const initialState:initialStatetype = {
+const initialState:authStatetype = {
     isAuthentication:false,
     userInfo:null
 }
@@ -35,7 +35,7 @@ const initialState:initialStatetype = {
 
 
 export const fetchUserInfo = createAsyncThunk(
-    'auth/fetchUserInfo',async ():Promise<initialStatetype>=>{
+    'auth/fetchUserInfo',async ():Promise<authStatetype>=>{
 
        const response  =  await getUserInfoByinitialToken()
        console.log(response)
@@ -50,7 +50,7 @@ const authSlice = createSlice({
     name:'auth',
     initialState,
     reducers:{
-        setUserInfo:(state,action:PayloadAction<initialStatetype>)=>{
+        setUserInfo:(state,action:PayloadAction<authStatetype>)=>{
 
             state.isAuthentication = action.payload.isAuthentication;
             state.userInfo = action.payload.userInfo

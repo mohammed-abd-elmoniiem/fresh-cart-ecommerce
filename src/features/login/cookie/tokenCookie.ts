@@ -1,6 +1,6 @@
 'use server'
 import { cookies, headers } from "next/headers";
-import { initialStatetype } from "../reducers/authReducer";
+import { authStatetype } from "../reducers/authReducer";
 import { url } from "inspector";
 import axios, { AxiosRequestConfig } from "axios";
 
@@ -33,7 +33,7 @@ const cookieStore = await cookies();
 
 // export async function 
 
-export async function getUserInfoByinitialToken():Promise<initialStatetype>{
+export async function getUserInfoByinitialToken():Promise<authStatetype>{
 
     const token = await getToken();
     console.log(token)

@@ -49,3 +49,44 @@ export async function addToCart(productId:string):Promise<CartData  >{
     }
 
 }
+
+
+export async function fetchLoggedUserCart():Promise<CartData  >{
+
+    const token = await getToken()
+
+
+    const options:AxiosRequestConfig={
+        url:'https://ecommerce.routemisr.com/api/v2/cart',
+        method:'POST',
+        headers:{
+            token
+        }
+    }
+
+    try{
+       const response = await axios.request(options)
+       console.log(response.data)
+       return response.data
+    }catch(error){
+                const cartData:CartData={
+            status: 'error',
+            message: '',
+            numOfCartItems: 0,
+            cartId: '',
+            data: {
+                _id: '',
+                cartOwner: '',
+                products: [],
+                createdAt: '',
+                updatedAt: '',
+                __v: 0,
+                totalCartPrice: 0
+            }
+
+        };
+      
+        return cartData
+    }
+
+}
