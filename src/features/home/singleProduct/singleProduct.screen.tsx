@@ -1,12 +1,20 @@
+
+
 import React from 'react'
 import Link from 'next/link'
 import { getSingleProduct } from './singleProduct.server'
 import { productData } from '../../../utils/types'
 import ProductReviews from './singleProductsReviews'
 import ProductImages from './singleProductImages'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faCar, faCartShopping } from '@fortawesome/free-solid-svg-icons'
+import { addToCart } from '../../cart/cart.actions'
+import { addProductToCart } from '../../cart/cart.servcies'
+import AddButton from './component/AddButton'
 
 export default async function SingleProductScreen({ id }: { id: string }) {
   const product: productData | null = await getSingleProduct(id)
+
 
   if (!product) {
     return (
@@ -68,18 +76,13 @@ export default async function SingleProductScreen({ id }: { id: string }) {
             </div>
           </div>
 
-          <div className="mt-6">
+          <div className="mt-6 ">
             <h3 className="text-sm font-medium text-gray-800">Description</h3>
-            <p className="mt-2 text-sm text-gray-600 whitespace-pre-line">{product.description}</p>
+            <p className="mt-2 font-light text-[12px] text-gray-600 ">{product.description}</p>
           </div>
 
           <div className="mt-6 flex gap-3">
-            <button
-              type="button"
-              className="flex-1 px-4 py-3 bg-emerald-500 hover:bg-emerald-600 text-white rounded-md text-sm"
-            >
-              Add to cart
-            </button>
+          <AddButton id={id}/>
             <button className="px-4 py-3 border border-neutral-200 rounded-md text-sm hover:bg-gray-50">
               Wishlist
             </button>
@@ -88,7 +91,7 @@ export default async function SingleProductScreen({ id }: { id: string }) {
           <div className="mt-6 text-sm text-gray-500">
             <p>
               Category:{' '}
-              <Link href={`/category/${product.category?.slug ?? product.category?._id}`} className="text-emerald-600">
+              <Link href={`/category/${product.category?.slug ?? product.category?._id}`} className="text-main">
                 {product.category?.name}
               </Link>
             </p>
@@ -98,7 +101,7 @@ export default async function SingleProductScreen({ id }: { id: string }) {
                 <Link
                   key={s._id}
                   href={`/subcategory/${s.slug}`}
-                  className="text-emerald-600 mr-2"
+                  className="text-main mr-2"
                 >
                   {s.name}
                 </Link>

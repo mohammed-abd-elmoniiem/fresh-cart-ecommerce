@@ -12,7 +12,7 @@ export default function ProductReviews({ reviews }: { reviews: ReviewType[] | nu
       <h4 className="text-sm font-medium">Reviews ({reviews.length})</h4>
       <ul className="mt-3 space-y-4">
         {reviews.map((r) => (
-          <li key={r._id} className="p-3 border rounded-md">
+          <li key={r._id} className="p-3 shadow bg-main/5 rounded-md">
             <div className="flex items-center justify-between">
               <div className="text-sm font-semibold">{r.user?.name ?? 'Anonymous'}</div>
               <div className="text-sm text-amber-500">{r.rating.toFixed(1)}★</div>

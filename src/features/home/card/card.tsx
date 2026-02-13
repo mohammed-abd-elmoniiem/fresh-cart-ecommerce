@@ -1,7 +1,12 @@
+'use client'
+
 import React from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { productData } from '../../../utils/types'
+import { addToCart } from '../../cart/cart.actions'
+import { toast } from 'react-toastify'
+import { addProductToCart } from '../../cart/cart.servcies'
 
 interface CardProps {
   product: productData
@@ -11,6 +16,9 @@ export default function Card({ product }: CardProps) {
   const image = product.imageCover ?? product.images?.[0] ?? ''
   const price = product.price
   const discounted = product.priceAfterDiscount
+
+
+  
 
   return (
     <div
@@ -75,6 +83,13 @@ export default function Card({ product }: CardProps) {
         <button
           type="button"
           className="flex-1 px-3 py-2 bg-emerald-500 hover:bg-emerald-600 text-white text-sm rounded transition"
+
+           onClick={()=>{
+                console.log(product.id)
+                addProductToCart(product.id)
+
+
+              }}
         >
           Add to cart
         </button>
