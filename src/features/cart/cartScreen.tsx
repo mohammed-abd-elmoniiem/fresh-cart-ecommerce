@@ -10,7 +10,7 @@ import { Product } from './cart.type'
 
 export default function CartScreen() {
 
-   const cartData =  useSelector((state:stateStype)=>state.cart)
+   const cartData =  useSelector((state:stateStype)=>state.cartReducer)
   return (
 
     <div className='grid  gap-2 md:grid-cols-2 w-full relative'>

@@ -58,7 +58,7 @@ export async function fetchLoggedUserCart():Promise<CartData  >{
 
     const options:AxiosRequestConfig={
         url:'https://ecommerce.routemisr.com/api/v2/cart',
-        method:'POST',
+        method:'GET',
         headers:{
             token
         }
@@ -66,7 +66,7 @@ export async function fetchLoggedUserCart():Promise<CartData  >{
 
     try{
        const response = await axios.request(options)
-       console.log(response.data)
+       console.log('cart in intial',response.data)
        return response.data
     }catch(error){
                 const cartData:CartData={
