@@ -23,9 +23,9 @@ export default function CartItem({ product }: Props) {
   const subtotal = useMemo(() => unitPrice * qty, [unitPrice, qty])
 
 
-  const increaseQty = async()=>{
+  const updateQty = async(count:number)=>{
         try{
-              const response = await updateCountItemCart(id,qty );
+              const response = await updateCountItemCart(id,count );
               console.log('response update cart',response)
               dispatch(
                 updateCart(response)
@@ -38,7 +38,7 @@ export default function CartItem({ product }: Props) {
 
   const increase = useCallback(() => {
     setQty((q) => q + 1)
-    increaseQty()
+    updateQty(qty)
 
     
     
@@ -46,6 +46,8 @@ export default function CartItem({ product }: Props) {
 
   const decrease = useCallback(() => {
     setQty((q) => Math.max(1, q - 1))
+    updateQty(qty)
+
   }, [])
 
   const remove = useCallback(() => {
