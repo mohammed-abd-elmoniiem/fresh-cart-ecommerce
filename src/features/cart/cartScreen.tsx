@@ -16,7 +16,7 @@ export default function CartScreen() {
     <div className='grid  gap-2 md:grid-cols-2 w-full relative'>
         <div className=' w-full '>
 
-            {cartData.data.products.map((product:Product)=> <CartItem product={product}/>)}
+            {cartData.data.products.map((product:Product)=> <CartItem product={product} key={product._id} />)}
         </div>
         <div className="w-full">
              <CartSummary products={cartData.data.products} />

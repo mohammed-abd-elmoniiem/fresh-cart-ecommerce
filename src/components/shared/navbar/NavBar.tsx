@@ -6,11 +6,14 @@ import Link from 'next/link'
 import Image from 'next/image'
 
 import logo from '../../../assets/freshcart-logo.svg'
-import { faCartFlatbed, faFileArrowUp, faHeart, faSignIn, faSignOut, faSignOutAlt, faUser, faUserPlus } from '@fortawesome/free-solid-svg-icons'
+import { faCartFlatbed, faExclamationTriangle, faFileArrowUp, faHeart, faSignIn, faSignOut, faSignOutAlt, faSpinner, faUser, faUserPlus } from '@fortawesome/free-solid-svg-icons'
 import { Fanwood_Text } from 'next/font/google'
 import { useSelector } from 'react-redux'
 import { stateStype, storeType } from '@/src/store/reduxStore/reduxStore'
 import  useLogOut  from '@/src/hooks/useLogOut'
+import { useQuery } from '@tanstack/react-query'
+import { fetchWishlist } from '@/src/features/wishlist/wishlist.actions'
+import { toast } from 'react-toastify'
 
 
 
@@ -20,6 +23,21 @@ export default function NavBar() {
   
 
   const {logout}  = useLogOut()
+
+   const {status,data,isLoading} = useQuery({
+      queryKey: ['wishlistData'],
+      queryFn: async () => {
+        return await fetchWishlist()
+      }
+    })
+
+    if(status=='success'){
+      toast.success('Wishlist loaded successfully')
+      console.log(data)
+
+    }else if(status=='error'){
+      toast.error('Failed to load wishlist')
+    }
 
   const numsOfItems = useSelector((state:stateStype)=>state.cartReducer.numOfCartItems)
 
@@ -108,9 +126,18 @@ export default function NavBar() {
           <ul className="flex gap-2">
 
             <li >
-              <Link href={'/wishlist'}className="flex flex-col gap-1 justify-center items-center hover:text-main " >
-                
-                <FontAwesomeIcon icon={faHeart}/>
+              <Link href={'/wishlist'}className="flex flex-col gap-1 justify-center items-center hover:text-main  relative w-full " >
+
+                {isLoading&& <FontAwesomeIcon className='absolute top-0 right-0' icon={faSpinner} spin />}
+                {status === 'error' && <FontAwesomeIcon icon={faExclamationTriangle} />}
+                {status === 'success' &&(
+                  <span className="absolute bottom-4 -right-2  bg-main flex justify-center items-center  w-4  
+                  aspect-square text-white rounded-full">
+                    {data.data.length}
+                  </span>
+                )}
+
+                <FontAwesomeIcon className='text-neutral-600 text-lg' icon={faHeart}/>
                 wishlist
               </Link>
             </li>

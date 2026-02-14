@@ -1,7 +1,10 @@
+import CategoriesScreen from '@/src/features/home/categories/CategoriesScreen'
 import React from 'react'
 
 export default function Categories() {
   return (
-    <div>Categories</div>
+    <div>
+      <CategoriesScreen/>
+    </div>
   )
 }

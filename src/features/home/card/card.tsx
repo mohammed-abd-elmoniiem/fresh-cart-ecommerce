@@ -10,6 +10,10 @@ import { addProductToCart } from '../../cart/cart.servcies'
 import { updateCart } from '../../cart/cartReducer/cartReducer'
 import { useDispatch } from 'react-redux'
 import { CartData } from '../../cart/cart.type'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faHeart } from '@fortawesome/free-solid-svg-icons'
+import { addToWishlist } from '../../wishlist/wishlist.actions'
+import { useQuery } from '@tanstack/react-query'
 
 interface CardProps {
   product: productData
@@ -21,12 +25,38 @@ export default function Card({ product }: CardProps) {
   const discounted = product.priceAfterDiscount
 
   const dispatch = useDispatch()
+  const{data,status , isError,isEnabled ,refetch}  = useQuery({
+          queryKey:['wishlist'],
+          queryFn:async ()=>{
+            return await addToWishlist(product.id)
+          },
+          enabled:false
+          
+        })
+    
+  const handleAddToWishlist = async () => {
+
+    refetch()
+
+    console.log(isEnabled,isError,data)
+   
+    
+    if (status === 'success') {
+      toast.success('Added to wishlist')
+      console.log(data)
+      
+    } else {
+      toast.error('Failed to add to wishlist')
+    }
+  }
 
   return (
     <div
       aria-label={product.title}
-      className="w-full bg-white border border-neutral-200 p-1  rounded-lg overflow-hidden shadow-md text-sm"
+      className="w-full bg-white border border-neutral-200 p-1  rounded-lg overflow-hidden shadow-md text-sm relative"
     >
+
+     
       <Link href={`/product/${product.id}`} className="block">
         <div className="w-full h-40 p-1 relative">
           <Image
@@ -36,6 +66,9 @@ export default function Card({ product }: CardProps) {
             className="object-contain"
            
           />
+
+
+         
         </div>
 
         <div className="p-3">
@@ -102,6 +135,7 @@ export default function Card({ product }: CardProps) {
         </button>
         <button
           type="button"
+          onClick={handleAddToWishlist}
           className="px-3 py-2 bg-main/5 border border-main text-sm rounded hover:bg-gray-50 transition"
         >
           Wishlist
