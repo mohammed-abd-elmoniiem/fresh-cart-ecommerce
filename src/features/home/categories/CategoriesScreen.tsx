@@ -9,10 +9,10 @@ export default async function CategoriesScreen() {
     console.log('categories response', response)
 
   return (
-    <div className='container mx-auto '>
-      <h1>Categories</h1>
+    <div className='container mx-auto  '>
+      <h2 className="text-xl border-l border-main  py-4">Categories</h2>
 
-      <div className="grid sm:grid-cols-3 lg:grid-cols-4 gap-4">
+      <div className="flex flex-wrap justify-center gap-2">
         {
           response != null ?
           response.map(category => (

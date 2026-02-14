@@ -5,18 +5,18 @@ import { Category } from './categoreies.types'
 
 export default function CategoriesCard({ category }: { category: Category }) {
   const href = `/subcategory/${ category._id }`
-  const src = category.image ?? '/placeholder.png'
+  const src = category.image 
 
   return (
-    <Link href={href} className="block" aria-label={category.name}>
-      <div className="bg-white border border-neutral-200 rounded-lg overflow-hidden shadow-sm hover:shadow-md transition ">
-        <div className="relative w-full h-40 bg-gray-100">
-          <Image src={src} alt={category.name} fill className="object-cover" />
+    <Link href={href} className="block w-12" aria-label={category.name}>
+      <div className="bg-white rounded-lg  shadow-sm hover:shadow-md transition flex p-2 ">
+        <div className="  w-22 rounded-full aspect-square overflow-hidden bg-gray-100 flex justify-center items-center ">
+          <Image src={src} alt={category.name}  className="object-contain rounded-full  w-full" width={50} height={50}/>
         </div>
 
-        <div className="p-4">
-          <h3 className="text-lg font-semibold text-gray-900 truncate">{category.name}</h3>
-          <p className="text-sm text-gray-500 mt-1">Browse products in this category</p>
+        <div className="p-2">
+          <h3 className="text-lg font-light text-gray-900  py-1 px-3 rounded-sm -translate-x-4">{category.name}</h3>
+          
         </div>
       </div>
     </Link>

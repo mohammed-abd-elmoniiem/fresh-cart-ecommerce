@@ -32,7 +32,7 @@ export default function NavBar() {
     })
 
     if(status=='success'){
-      toast.success('Wishlist loaded successfully')
+      
       console.log(data)
 
     }else if(status=='error'){
@@ -43,10 +43,10 @@ export default function NavBar() {
 
   const isAuthenticated = useSelector((state:stateStype)=>state.authReducer.isAuthentication)
   return (
-    <div className=''>
+    <div className='container mx-auto px-2'>
 
-      <div className="top flex justify-between text-[12px] font-light capitalize container mx-auto border-b border-dashed  border-neutral-400">
-        <ul className="flex gap-3">
+      <div className="top  flex flex-wrap justify-between text-[12px] font-light capitalize container mx-auto border-b border-dashed  border-neutral-400">
+        <ul className=" hidden md:flex  gap-3">
 
           <li className="">
             <a href="" className="">
@@ -102,12 +102,12 @@ export default function NavBar() {
         </ul>
       </div>
 
-      <div className="center flex justify-center sm:justify-between items-center gap-2 flex-wrap  text-sm  capitalize container mx-auto p-2 ">
+      <div className="center flex justify-between gap-2 flex-wrap  text-sm  capitalize container mx-auto p-2 ">
 
         <div className="logo">
 
-          <Link href={'/'}>
-           <Image src = {logo } className='min-w-40 ' width={200} height={100} alt='logo'/>
+          <Link href={'/' } className='w-12 sm:w-40'>
+           <Image src = {logo } className='  object-contain'  alt='logo'/>
           </Link>
          
 
@@ -115,53 +115,54 @@ export default function NavBar() {
 
 
 
-        <div className="search border border-neutral-600/40 rounded-md p-1">
+        <div className="search hidden md:block border border-neutral-600/40 rounded-md p-1">
 
           <input type="search" className="" placeholder='search for products' />
 
         </div>
 
-        <div className="pages text-neutral-800">
+        <div className="pages text-neutral-800 flex justify-between">
 
-          <ul className="flex gap-2">
+          <ul className="flex gap-2 ">
 
-            <li >
-              <Link href={'/wishlist'}className="flex flex-col gap-1 justify-center items-center hover:text-main  relative w-full " >
-
-                {isLoading&& <FontAwesomeIcon className='absolute top-0 right-0' icon={faSpinner} spin />}
-                {status === 'error' && <FontAwesomeIcon icon={faExclamationTriangle} />}
-                {status === 'success' &&(
-                  <span className="absolute bottom-4 -right-2  bg-main flex justify-center items-center  w-4  
-                  aspect-square text-white rounded-full">
-                    {data.data.length}
-                  </span>
-                )}
-
-                <FontAwesomeIcon className='text-neutral-600 text-lg' icon={faHeart}/>
-                wishlist
-              </Link>
-            </li>
-
-            {/* <li className="">
-              <Link href={'/wishlist'}>
-                compare
-              </Link>
-            </li> */}
             
-            <li className="">
-              <Link href={'/cart'} className="flex flex-col gap-1 justify-center items-center hover:text-main relative ">
-              <FontAwesomeIcon icon={faCartFlatbed}/>
-                cart
 
-                <span className="absolute -top-1 -right-1 bg-main flex justify-center items-center  w-4 text-[10px]  aspect-square text-white rounded-full">
-                  {numsOfItems}
-                </span>
-              </Link>
-            </li>
+           
+            
+          
             
            
             {
               isAuthenticated?<>
+
+
+                      <li >
+                        <Link href={'/wishlist'}className="flex flex-col gap-1 justify-center items-center hover:text-main  relative w-full " >
+
+                          {isLoading&& <FontAwesomeIcon className='absolute top-0 right-0' icon={faSpinner} spin />}
+                          {status === 'error' && <FontAwesomeIcon icon={faExclamationTriangle} />}
+                          {status === 'success' &&(
+                            <span className="absolute bottom-4 -right-2  bg-main flex justify-center items-center  w-4  
+                            aspect-square text-white rounded-full">
+                              {data.data.length}
+                            </span>
+                          )}
+
+                          <FontAwesomeIcon className='text-neutral-600 text-lg' icon={faHeart}/>
+                          wishlist
+                        </Link>
+            </li>
+
+                      <li className="">
+                        <Link href={'/cart'} className="flex flex-col gap-1 justify-center items-center hover:text-main relative ">
+                        <FontAwesomeIcon icon={faCartFlatbed}/>
+                          cart
+
+                          <span className="absolute -top-1 -right-1 bg-main flex justify-center items-center  w-4 text-[10px]  aspect-square text-white rounded-full">
+                            {numsOfItems}
+                          </span>
+                        </Link>
+                      </li>
 
 
                       <li className="">
@@ -205,6 +206,28 @@ export default function NavBar() {
           </ul>
 
         </div>
+      </div>
+
+      <div className="bottom">
+        <ul className="flex gap-2 font-light capitalize">
+
+          <li className="">
+                    <Link href={'/categories'} className="flex flex-col gap-1  justify-center items-center hover:text-main ">
+                    
+
+                      category
+                    </Link>
+            </li>
+
+           <li className="">
+                    <Link href={'/brands'} className="flex flex-col gap-1 justify-center items-center hover:text-main ">
+                    
+
+                      brands
+                    </Link>
+            </li>
+
+        </ul>
       </div>
 
       

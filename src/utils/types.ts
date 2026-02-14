@@ -1,4 +1,4 @@
-export interface ResponsData {
+export interface RootProductData {
   results: number
   metadata: Metadata
   data: productData[]

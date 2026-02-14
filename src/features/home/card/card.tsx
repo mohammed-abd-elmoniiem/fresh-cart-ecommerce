@@ -11,18 +11,23 @@ import { updateCart } from '../../cart/cartReducer/cartReducer'
 import { useDispatch } from 'react-redux'
 import { CartData } from '../../cart/cart.type'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faHeart } from '@fortawesome/free-solid-svg-icons'
-import { addToWishlist } from '../../wishlist/wishlist.actions'
+import { faHeart, faHeartCircleMinus, faHeartPulse } from '@fortawesome/free-solid-svg-icons'
+import { addToWishlist, removeFromWishlist } from '../../wishlist/wishlist.actions'
 import { useQuery } from '@tanstack/react-query'
+import { fa } from 'zod/v4/locales'
+import { queryClient } from '@/src/providers'
 
 interface CardProps {
-  product: productData
+  product: productData,
+  isWished?: boolean
 }
 
-export default function Card({ product }: CardProps) {
+export default function Card({ product,isWished=false }: CardProps) {
   const image = product.imageCover ?? product.images?.[0] ?? ''
   const price = product.price
   const discounted = product.priceAfterDiscount
+
+
 
   const dispatch = useDispatch()
   const{data,status , isError,isEnabled ,refetch}  = useQuery({
@@ -30,7 +35,18 @@ export default function Card({ product }: CardProps) {
           queryFn:async ()=>{
             return await addToWishlist(product.id)
           },
+          
+          
+        })
+
+     const{status:removeState  ,refetch:removeRefetch}  = useQuery({
+          queryKey:['wishlistAfterREmoving'],
+          queryFn:async ()=>{
+            return await removeFromWishlist(product.id)
+
+          },
           enabled:false
+          
           
         })
     
@@ -43,10 +59,30 @@ export default function Card({ product }: CardProps) {
     
     if (status === 'success') {
       toast.success('Added to wishlist')
+      queryClient.invalidateQueries({
+        queryKey:['wishlistData']
+      })
       console.log(data)
       
     } else {
       toast.error('Failed to add to wishlist')
+    }
+  }
+
+  const handleRemoveFromWishlist = async () => {
+
+    removeRefetch()
+
+    console.log(isEnabled,isError,data)
+    if (removeState === 'success') {
+      toast.success('remove from wishlist')
+      queryClient.invalidateQueries({
+        queryKey:['wishlistData']
+      })
+      console.log(data)
+      
+    } else {
+      toast.error('Failed to remove from wishlist')
     }
   }
 
@@ -133,13 +169,30 @@ export default function Card({ product }: CardProps) {
         >
           Add to cart
         </button>
-        <button
-          type="button"
-          onClick={handleAddToWishlist}
-          className="px-3 py-2 bg-main/5 border border-main text-sm rounded hover:bg-gray-50 transition"
-        >
-          Wishlist
-        </button>
+
+        {
+          !isWished ? (
+             <button
+              type="button"
+              onClick={handleAddToWishlist}
+              className="px-3 py-1 bg-main/5 border border-main text-sm rounded hover:bg-gray-50 flex justify-center items-center transition"
+            >
+            <FontAwesomeIcon icon={faHeart} className='text-main text-lg' />
+            </button>
+          
+          ):(
+
+              <button
+              type="button"
+              onClick={handleRemoveFromWishlist}
+              className="px-3 py-1 bg-main/5 border border-main text-sm rounded hover:bg-gray-50 flex justify-center items-center transition"
+            >
+            <FontAwesomeIcon icon={faHeartCircleMinus} className='text-rose-600 text-lg' />
+            </button>
+
+          )
+        }
+       
       </div>
     </div>
   )

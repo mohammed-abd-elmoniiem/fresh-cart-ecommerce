@@ -8,11 +8,7 @@ import useStore from './store/useStore';
 import Initialization from './Initialization';
 import {QueryClient , QueryClientProvider} from '@tanstack/react-query'
 
-
-
-export default  function Providers({children}:{children:React.ReactNode}) {
-
-  const queryClient = new QueryClient({
+ export const queryClient = new QueryClient({
     defaultOptions:{
       queries:{
         staleTime: 1000 * 60 * 5, // 5 minutes
@@ -21,6 +17,10 @@ export default  function Providers({children}:{children:React.ReactNode}) {
     }
   })
 
+
+export default  function Providers({children}:{children:React.ReactNode}) {
+
+ 
 
   
 
