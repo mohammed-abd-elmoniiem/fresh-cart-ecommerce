@@ -121,7 +121,7 @@ export default function NavBar() {
 
         </div>
 
-        <div className="pages text-neutral-800 flex justify-between">
+        <div className="pages text-neutral-800 flex justify-between font-light">
 
           <ul className="flex gap-2 ">
 
@@ -137,24 +137,22 @@ export default function NavBar() {
 
 
                       <li >
-                        <Link href={'/wishlist'}className="flex flex-col gap-1 justify-center items-center hover:text-main  relative w-full " >
 
-                          {isLoading&& <FontAwesomeIcon className='absolute top-0 right-0' icon={faSpinner} spin />}
-                          {status === 'error' && <FontAwesomeIcon icon={faExclamationTriangle} />}
-                          {status === 'success' &&(
-                            <span className="absolute bottom-4 -right-2  bg-main flex justify-center items-center  w-4  
-                            aspect-square text-white rounded-full">
-                              {data.data.length}
-                            </span>
-                          )}
 
-                          <FontAwesomeIcon className='text-neutral-600 text-lg' icon={faHeart}/>
+                         <Link href={'/wishlist'} className="flex flex-col gap-0 justify-center items-center hover:text-main relative ">
+                        <FontAwesomeIcon icon={faHeart}/>
                           wishlist
+                        { status === 'success' && <span className="absolute -top-1 -right-1 translate-x-1 bg-main flex justify-center items-center  w-4 text-[10px]  aspect-square text-white rounded-full">
+                             {data.data.length}
+                          </span>}
                         </Link>
+
+
+                        
             </li>
 
                       <li className="">
-                        <Link href={'/cart'} className="flex flex-col gap-1 justify-center items-center hover:text-main relative ">
+                        <Link href={'/cart'} className="flex flex-col gap-0 justify-center items-center hover:text-main relative ">
                         <FontAwesomeIcon icon={faCartFlatbed}/>
                           cart
 
@@ -166,7 +164,7 @@ export default function NavBar() {
 
 
                       <li className="">
-                      <Link href={'/profile'} className="flex flex-col gap-1 justify-center items-center hover:text-main ">
+                      <Link href={'/profile'} className="flex flex-col gap-0 justify-center items-center hover:text-main ">
                       <FontAwesomeIcon icon={faUser}/>
                         account
                       </Link>
@@ -174,7 +172,7 @@ export default function NavBar() {
                       <li className="" >
                       <button 
                       onClick={logout}
-                      className="flex flex-col gap-1 justify-center items-center hover:text-red-500 ">
+                      className="flex flex-col gap-0 justify-center items-center hover:text-red-500 ">
                         <FontAwesomeIcon icon={faSignOutAlt}/>
                         log out
                       </button>
@@ -183,7 +181,7 @@ export default function NavBar() {
                     </li>
               </>:<>
                       <li className="">
-                    <Link href={'/login'} className="flex flex-col gap-1 justify-center items-center hover:text-main ">
+                    <Link href={'/login'} className="flex flex-col gap-0 justify-center items-center hover:text-main ">
                     <FontAwesomeIcon icon={faSignIn}/>
 
                       login

@@ -1,6 +1,7 @@
 
 
 
+import BrandProductsScreen from '@/src/features/singleBrand/brandProductsScreen'
 import React from 'react'
 
 export default async function page({params}:{params:Promise<{brand:string}>}) {
@@ -9,6 +10,8 @@ export default async function page({params}:{params:Promise<{brand:string}>}) {
 
     
   return (
-    <div>page</div>
+    <div className='flex justify-center'>
+      <BrandProductsScreen brand={brand} />
+    </div>
   )
 }

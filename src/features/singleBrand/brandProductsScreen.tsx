@@ -1,3 +1,5 @@
+'use client'
+
 import { useQuery } from '@tanstack/react-query'
 import React from 'react'
 import { fetchBrandProducts } from './brandProduct.action'
@@ -24,7 +26,7 @@ export default function BrandProductsScreen({brand}:{brand:string}) {
       console.log(data)
 
   return (
-    <div>
+    <div className='grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 p-2 gap-2 justify-between'>
         {data && data.data.map((product:productData)=><Card key={product.id} product={product} />)}
     </div>
   )
