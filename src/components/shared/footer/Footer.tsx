@@ -34,7 +34,7 @@ export default function Footer() {
 
 
           {/* subscribe - first on mobile, right-most on desktop */}
-          <div className=" bg-white w-2xl  shadow-xl p-2 rounded-md ">
+          <div className=" bg-white w-full max-w-lg shadow-xl p-2 rounded-md ">
             
             <p className="text-sm text-gray-600 mb-3">Get updates, offers and new arrivals.</p>
 
@@ -60,7 +60,7 @@ export default function Footer() {
           </div>
 
           {/* quick links & customer (center) */}
-          <div className="flex flex-wrap justify-between w-2xl  ">
+          <div className="flex flex-wrap justify-between w-full max-w-lg  ">
             <div>
               <h4 className="text-sm font-medium text-gray-900 mb-3">Quick links</h4>
               <ul className="text-sm text-gray-600 space-y-2">

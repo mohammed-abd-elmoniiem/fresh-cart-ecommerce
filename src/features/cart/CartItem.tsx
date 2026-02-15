@@ -80,11 +80,11 @@ export default function CartItem({ product }: Props) {
         <Image src={product.product.imageCover} alt={String(product.product.title ?? 'product')} fill className="object-cover" />
       </div>
 
-      <div className="flex-1 min-w-0">
+      <div className="flex-1 max-w-full">
         <div className="flex items-start justify-between gap-3">
-          <div className="truncate">
-            <h3 className="text-sm font-medium text-gray-900 truncate">{product.product.title}</h3>
-            <p className="text-xs text-gray-500 mt-1 truncate">{product.product.brand?.name}</p>
+          <div className="">
+            <h3 className="text-sm font-light  text-gray-900  break-normal ">{product.product.title}</h3>
+            <p className="text-xs text-gray-500 mt-1 break-normal ">{product.product.brand?.name}</p>
           </div>
 
           <div className="text-right">
