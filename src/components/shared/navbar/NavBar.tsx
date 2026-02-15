@@ -24,7 +24,7 @@ export default function NavBar() {
 
   const {logout}  = useLogOut()
 
-  const [toggle, settoggle] = useState(false)
+  const [toggle, settoggle] = useState(true)
 
    const {status,data,isLoading} = useQuery({
       queryKey: ['wishlistData'],
@@ -47,8 +47,8 @@ export default function NavBar() {
   return (
     <div className='container mx-auto px-2'>
 
-      <div className="top  flex flex-wrap justify-between text-[12px] font-light capitalize container mx-auto border-b border-dashed  border-neutral-400">
-        <ul className=" hidden md:flex  gap-3">
+      <div className="top  hidden md:flex flex-wrap justify-between text-[12px] font-light capitalize container mx-auto border-b border-dashed  border-neutral-400">
+        <ul className="   gap-3">
 
           <li className="">
             <a href="" className="">
@@ -178,7 +178,7 @@ export default function NavBar() {
                         <FontAwesomeIcon icon={faHeart}/>
                           wishlist
                         <span className="absolute -top-1 -right-1 bg-main flex justify-start items-center   text-[12px] p-1 aspect-square text-white rounded-full">
-                             {data.data.length}
+                             {data?.data.length}
                           </span>
                         </Link>
 
@@ -198,7 +198,7 @@ export default function NavBar() {
                       <li className="">
                       <Link href={'/profile'} className="flex md:flex-col  gap-1 justify-start items-center hover:text-main ">
                       <FontAwesomeIcon icon={faUser}/>
-                        account
+                       profile
                       </Link>
                     </li>
                       <li className="" >

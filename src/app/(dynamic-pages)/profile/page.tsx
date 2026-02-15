@@ -1,7 +1,10 @@
+import ProfileScreen from '@/src/features/profile/profile.screen'
 import React from 'react'
 
-export default function Profle() {
+export default function Profile() {
   return (
-    <div>Profle</div>
+    <div className='container mx-auto px-2'>
+      <ProfileScreen/>
+    </div>
   )
 }

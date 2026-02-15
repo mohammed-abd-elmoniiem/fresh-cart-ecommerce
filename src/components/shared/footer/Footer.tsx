@@ -19,7 +19,7 @@ export default function Footer() {
 
             {/* logo & description - left on desktop */}
 
-            <div className="order-1 md:order-1 md:col-span-1">
+            <div className=" ">
             <Link href="/" className="flex items-center gap-3">
               <div className="relative w-32 ">
                 <Image src={logo} alt="FreshCart" width={150} className="object-contain" />
@@ -35,7 +35,7 @@ export default function Footer() {
 
           {/* subscribe - first on mobile, right-most on desktop */}
           <div className=" bg-white w-2xl  shadow-xl p-2 rounded-md ">
-            <h4 className="text-sm font-medium text-gray-900 mb-3">Subscribe</h4>
+            
             <p className="text-sm text-gray-600 mb-3">Get updates, offers and new arrivals.</p>
 
             <form className="flex gap-2">
@@ -50,7 +50,7 @@ export default function Footer() {
               />
               <button
                 type="submit"
-                className="px-4 py-2 bg-emerald-600 text-white rounded-md text-sm hover:bg-emerald-700 disabled:opacity-60"
+                className="px-4 py-2 bg-main text-white rounded-md text-sm hover:bg-main/70 disabled:opacity-60"
                
               >
                 {'Subscribe'}

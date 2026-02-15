@@ -26,7 +26,7 @@ export default async function loginRequest(values:loginFormValues){
 
 
             const response = await axios.request(options)
-            //  console.log(response.data)
+             console.log(response.data)
                
                
                return {
