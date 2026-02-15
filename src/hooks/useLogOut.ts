@@ -23,7 +23,7 @@ export default function useLogOut(){
     const logout = async ()=>{
 
         removeToken()
-        queryClient.invalidateQueries(['wishlistData'])
+        
 
 
 
