@@ -178,7 +178,7 @@ export default function NavBar() {
                         <FontAwesomeIcon icon={faHeart}/>
                           wishlist
                         <span className="absolute -top-1 -right-1 bg-main flex justify-start items-center   text-[12px] p-1 aspect-square text-white rounded-full">
-                             {data?.data.length}
+                             {data?.data?.length || '0'}
                           </span>
                         </Link>
 
