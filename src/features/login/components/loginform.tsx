@@ -109,13 +109,13 @@ export default function LoginForm() {
 
 
   return (
-   <form className="grid grid-cols-1 gap-2 bg-gray-50    text-[13px] w-1/2 min-w-100 max-w-md p-4 rounded-2xl" action="#" onSubmit={handleSubmit(onSubmit)}>
-    <h2 className="uppercase text-lg text-center">
-      sign in
+   <form className="grid grid-cols-1 gap-2 bg-gray-50 grow   text-[13px] w-1/5 sm:w-2/4 rounded-2xl" action="#" onSubmit={handleSubmit(onSubmit)}>
+    <h2 className="uppercase text-2xl font-light text-center">
+      login
     </h2>
 
             
-             <div className=' rounded-md '>
+             <div className=' rounded-md  w-full'>
               <label htmlFor="email" className="capitalize font-light text-md ml-1">Your email</label>
               <input type="email"
                className=" bg-white text-black w-full border border-neutral-400  rounded-md px-2 py-1" placeholder="email@example.com"
@@ -184,6 +184,8 @@ export default function LoginForm() {
               don't have an account? 
               < Link href="/signup" className="font-light text-blue-600 ml-2">register here</Link>
             </p>
+
+            <Link href={'/forget-password'} className='text-blue-400 hover:underline'>forget the password</Link>
           </form>
   )
 }

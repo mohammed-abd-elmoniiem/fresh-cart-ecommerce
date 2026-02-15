@@ -24,13 +24,13 @@ export default function ProfileScreen() {
              
              </div>
 
-             <div className="absolute -top-1 -left-2  text-lg flex items-center   p-2 aspect-square border text-main rounded-full bg-white  group" 
+             <Link  href={'/forget-password'} className="absolute -top-1 -left-2  text-lg flex items-center   p-2 aspect-square border text-main rounded-full bg-white  group" 
              onClick={() => {}
 
              }>
                 <FontAwesomeIcon icon={faGear}/>
                 <p className="text-sm font-light absolute top-full w-32 bg-white rounded-md text-main border origin-top scale-0 group-hover:scale-100 transition-all duration-300">Change Password</p>
-             </div>
+             </Link>
         </div>
 
         {

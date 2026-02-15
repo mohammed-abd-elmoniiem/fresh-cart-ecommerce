@@ -84,7 +84,7 @@ export default function SignUpForm() {
 
 
   return (
-   <form className="grid grid-cols-1 gap-2 bg-gray-50 items-center justify-center   text-[13px] w-1/2 min-w-100 max-w-md p-4 rounded-2xl" action="#" onSubmit={handleSubmit(onSubmit)}>
+   <form className="grid grid-cols-1 gap-2 bg-gray-50 items-center justify-center  w-1/5 text-[13px] lg:w-1/2  max-w-md p-1 rounded-2xl grow" action="#" onSubmit={handleSubmit(onSubmit)}>
     <h2 className="capitalize  text-center   text-2xl"> create your account</h2>
 
             <div className=' rounded-md  '>
