@@ -12,32 +12,33 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
  import { faMagnifyingGlass, faCircleStop, faIndent, faInfo, faSpinner } from "@fortawesome/free-solid-svg-icons";
 import Link from 'next/link'
 
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
+import { ChangeMyPasswordFormValues } from './types'
+import { createNewPasswordSchema } from './changeMyPasswordSchema'
+import createNewPasswordRequest from './changeMyPasswordAction'
+import changeMyPasswordRequest from './changeMyPasswordAction'
+import { setUserInfo } from '../login/reducers/authReducer'
+import useLogOut from '@/src/hooks/useLogOut'
 
-import createNewPasswordRequest from './createNewPasswordAction'
-import { createNewPasswordFormValues } from './types'
-import { createNewPasswordSchema } from './createNewPasswordSchema'
-import { stateStype } from '@/src/store/reduxStore/reduxStore'
 
 
-
-export default function CreateNewPasswordForm() {
+export default function ChangeMyPasswordForm() {
 
   const router = useRouter()
 
   const dispatch = useDispatch()
 
-  const authData = useSelector((state:stateStype)=>state.authReducer)
+      const {logout} = useLogOut()
 
 
 
 
 
 
-      const {register,setError,handleSubmit,formState:{errors,isSubmitting}} = useForm<createNewPasswordFormValues>({
+      const {register,setError,handleSubmit,formState:{errors,isSubmitting}} = useForm<ChangeMyPasswordFormValues>({
     defaultValues:{
-      
-      newPassword:'123456@aA',
+      currentPassword:'123456@aA',
+      password:'123456@aA',
       rePassword:'123456@aA',
 
    
@@ -53,91 +54,97 @@ export default function CreateNewPasswordForm() {
 
 
 
-  const onSubmit:SubmitHandler<createNewPasswordFormValues> =async function (values){
+  const onSubmit:SubmitHandler<ChangeMyPasswordFormValues> =async function (values){
   
-      console.log(values , `email:${authData.userInfo?.email}`)
+      console.log(values)
+  
+     const res=  await changeMyPasswordRequest(values)
+     console.log('res',res)
+  
+     if(res?.message !== 'success'){
 
-    
-
-            const res=  await createNewPasswordRequest(values,authData.userInfo?.email as string)
-        console.log('res',res)
-      
-        //  if(res?.success === false){
-
-        //   toast.error(res?.message || 'there is a problem, try again later',{
-        //     position:'top-center',
-        //     autoClose:5000,
-        //   })
-
-
-        //   Object.keys(res?.errors).forEach(path=> {
-        //     console.log(path)
-
-        //     setError(path as keyof createNewPasswordFormValues,{message:res?.errors[path]})
-
-              
-        //   });
-        //  }else{
-          
-
-        //   // indication  to the user
-        //   toast.success(res?.message || 'logged in successfully',{
-        //     position:'top-center',
-        //     autoClose:5000,
-        //   })
-
-
-        //   // set token in cookies
-
-        
-
-
-        //   // set user info in redux store
-
-        
-
-        
-
-
-
-        //   // setTimeout(()=>{
-        //   //   router.push('/')
-        //   // }, 2000)
-        //  }
-      
+      toast.error(res?.message || 'there is a problem, try again later',{
+        position:'top-center',
+        autoClose:5000,
+      })
 
 
      
 
+          
+    
+     }else{
 
   
+      logout()
+       
+
+      // indication  to the user
+      toast.success(res?.message || 'logged in successfully',{
+        position:'top-center',
+        autoClose:5000,
+      })
+
     
+
+
+      // set token in cookies
+
+    
+
+
+      // set user info in redux store
+
+    
+
+     
+
+
+
+      setTimeout(()=>{
+        router.push('/')
+      }, 2000)
+     }
+  
   
   }
 
 
 
   return (
-   <form className="grid grid-cols-1 gap-2 bg-gray-50 grow   text-[13px] w-1/5 sm:w-2/4 rounded-2xl" action="#" onSubmit={handleSubmit(onSubmit)}>
+   <form className="grid grid-cols-1 gap-2 bg-gray-50 grow   text-[13px] w-4/5 md:w-2/4 rounded-2xl" action="#" onSubmit={handleSubmit(onSubmit)}>
     <h2 className="uppercase text-2xl font-light text-center">
       change my password
     </h2>
 
             
          
+   <div className=' rounded-md  '>
+              <label htmlFor="name" className="capitalize font-light text-md ml-1">enter the current password</label>
+              <input type="password"
+               className=" bg-white text-black w-full border border-neutral-400  rounded-md px-2 py-1" placeholder="mohamed"
 
+               {...register('currentPassword')}
+
+                />
+              
+              
+              <p className= {` ${ !errors.currentPassword && 'hidden'} text-[11px] text-red-500 ml-2` }>{errors.currentPassword?.message}</p>
+
+
+            </div>
 
              <div className=' rounded-md  '>
               <label htmlFor="name" className="capitalize font-light text-md ml-1">enter new password</label>
               <input type="password"
                className=" bg-white text-black w-full border border-neutral-400  rounded-md px-2 py-1" placeholder="mohamed"
 
-               {...register('newPassword')}
+               {...register('password')}
 
                 />
               
               
-              <p className= {` ${ !errors.newPassword && 'hidden'} text-[11px] text-red-500 ml-2` }>{errors.newPassword?.message}</p>
+              <p className= {` ${ !errors.password && 'hidden'} text-[11px] text-red-500 ml-2` }>{errors.password?.message}</p>
 
 
             </div>
@@ -174,7 +181,7 @@ export default function CreateNewPasswordForm() {
 
      
               
-                reset the password
+                change the password
               </button>
 
             <p className=" font-light text-neutral-600">

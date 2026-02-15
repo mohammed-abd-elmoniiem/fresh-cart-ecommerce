@@ -16,6 +16,7 @@ import { useDispatch } from 'react-redux'
 import { fortgetPasswordFormValues } from './types'
 import forgetPasswordRequest from './forgetPassword.action'
 import { forgetPasswordSchema } from './forgetPasswordschema'
+import { setUserInfo } from '../login/reducers/authReducer'
 
 
 
@@ -74,11 +75,19 @@ export default function ForgetPasswordForm() {
 
     
      
-
-
+     
+    dispatch(
+      setUserInfo({
+        isAuthentication:false,
+        userInfo:{
+          email:values.email
+        }
+      })
+    )
 
       setTimeout(()=>{
-        router.push('/reset-password')
+        console.log(values.email)
+        router.push('/verify-reset-code')
       }, 2000)
      }
   

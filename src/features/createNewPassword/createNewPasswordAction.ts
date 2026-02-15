@@ -12,7 +12,7 @@ import { getToken } from '../login/cookie/tokenCookie';
 
 
 
-export default async function createNewPasswordRequest(values:createNewPasswordFormValues):Promise<void>{
+export default async function createNewPasswordRequest(values:createNewPasswordFormValues,email:string):Promise<void>{
 
    const validation =  createNewPasswordSchema.safeParse(values);
        const errors:Record<string ,string>={};
@@ -24,14 +24,14 @@ export default async function createNewPasswordRequest(values:createNewPasswordF
           console.log(token)
 
          const options:AxiosRequestConfig= {
-            url:'https://ecommerce.routemisr.com/api/v1/users/changeMyPassword',
+            url:'https://ecommerce.routemisr.com/api/v1/auth/resetPassword',
             method:'PUT',
-            headers:{
-               token
+           
 
-            },
-
-            data:values
+            data:{
+               newPassword:values.newPassword,
+               email
+            }
          }
 
          try {

@@ -3,16 +3,17 @@
 
 
 import axios, { AxiosRequestConfig } from 'axios'
-import { resetPasswordSchema } from './resetPasswordschema';
-import { resetPasswordFormValues } from './types';
+import { resetCodeSchema } from './resetCodeSchema';
+import { resetCodeFormValues } from './types';
 
 
 
-export default async function resetPasswordRequest(values:resetPasswordFormValues):Promise<{status:string}>{
+
+export default async function resetCodeRequest(values:resetCodeFormValues):Promise<{status:string}>{
 
    console.log(values)
 
-   const validation =  resetPasswordSchema.safeParse(values);
+   const validation =  resetCodeSchema.safeParse(values);
        
 
 
@@ -29,13 +30,13 @@ export default async function resetPasswordRequest(values:resetPasswordFormValue
 
 
             const response = await axios.request(options)
-             console.log(response)
+             console.log(response.data)
                
                
                return response.data
          } catch (error) {
 
-              console.log( error)
+              console.log( error?.response)
               if(error instanceof axios.AxiosError ){
         
                return {

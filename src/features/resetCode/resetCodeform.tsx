@@ -13,15 +13,17 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Link from 'next/link'
 
 import { useDispatch } from 'react-redux'
-import forgetPasswordRequest from './resetPassword.action'
-import { resetPasswordFormValues } from './types'
-import { resetPasswordSchema } from './resetPasswordschema'
-import resetPasswordRequest from './resetPassword.action'
+
+
+
+import { resetCodeFormValues } from './types'
+import { resetCodeSchema } from './resetCodeSchema'
+import resetCodeRequest from './resetCode.action'
 
 
 
 
-export default function ResetPasswordForm() {
+export default function ResetCodeForm() {
 
   const router = useRouter()
 
@@ -32,7 +34,7 @@ export default function ResetPasswordForm() {
 
 
 
-      const {register,setError,handleSubmit,formState:{errors,isSubmitting}} = useForm<resetPasswordFormValues>({
+      const {register,setError,handleSubmit,formState:{errors,isSubmitting}} = useForm<resetCodeFormValues>({
     defaultValues:{
       
       resetCode:''
@@ -42,18 +44,18 @@ export default function ResetPasswordForm() {
 
     },
     mode:'onChange',
-    resolver:zodResolver(resetPasswordSchema)
+    resolver:zodResolver(resetCodeSchema)
   })
   
 
 
 
-  const onSubmit:SubmitHandler<resetPasswordFormValues> =async function (values){
+  const onSubmit:SubmitHandler<resetCodeFormValues> =async function (values){
   
       console.log('values',values)
   
-     const res=  await resetPasswordRequest(values)
-     console.log('res forget',res)
+     const res=  await resetCodeRequest(values)
+     console.log('res verify',res)
   
      if(res.status != 'Success'){
 
@@ -90,7 +92,7 @@ export default function ResetPasswordForm() {
 
 
   return (
-   <form className="grid grid-cols-1 gap-2 bg-gray-50 grow   text-[13px] w-1/5 sm:w-2/4 rounded-2xl" action="#" onSubmit={handleSubmit(onSubmit)}>
+   <form className="grid grid-cols-1 gap-2 bg-gray-50   text-[13px] w-4/5 sm:w-2/4 rounded-2xl" action="#" onSubmit={handleSubmit(onSubmit)}>
     <h2 className="uppercase text-2xl font-light text-center">
      verify my email
     </h2>

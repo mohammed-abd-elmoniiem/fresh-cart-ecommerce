@@ -24,7 +24,7 @@ export default function ProfileScreen() {
              
              </div>
 
-             <Link  href={'/forget-password'} className="absolute -top-1 -left-2  text-lg flex items-center   p-2 aspect-square border text-main rounded-full bg-white  group" 
+             <Link  href={'/change-my-password'} className="absolute -top-1 -left-2  text-lg flex items-center   p-2 aspect-square border text-main rounded-full bg-white  group" 
              onClick={() => {}
 
              }>
