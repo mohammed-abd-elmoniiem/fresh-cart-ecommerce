@@ -3,6 +3,7 @@
 'use server'
 import "./globals.css";
 import { Roboto } from 'next/font/google'
+import 'flowbite-react'
 
 import { config } from '@fortawesome/fontawesome-svg-core'
 import '@fortawesome/fontawesome-svg-core/styles.css'

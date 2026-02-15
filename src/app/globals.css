@@ -34,4 +34,17 @@ input:focus {
 
 @theme {
   --color-main: #00ac25;
+  --color-main-r: #ffffff;
+}
+
+li a {
+  width: max-content;
+  padding: 3px 9px;
+}
+
+li > a:hover {
+  color: var(--color-main-r);
+  background-color: #00ac25c4;
+
+  border-radius: 5px;
 }

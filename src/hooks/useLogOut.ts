@@ -7,6 +7,7 @@ import { setUserInfo } from "../features/login/reducers/authReducer";
 import { useRouter } from "next/navigation";
 import { toast } from "react-toastify";
 import { de } from "zod/v4/locales";
+import { queryClient } from "../providers";
 
 
 
@@ -17,7 +18,12 @@ export default function useLogOut(){
 
             const router = useRouter()
 
+            
+
     const logout = async ()=>{
+
+        removeToken()
+        queryClient.invalidateQueries(['wishlistData'])
 
 
 
@@ -28,6 +34,8 @@ export default function useLogOut(){
                 
                 })
             )
+
+            
 
             toast.success('logout successfully')
 

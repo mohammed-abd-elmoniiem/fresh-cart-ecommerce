@@ -10,7 +10,7 @@ export default async function page({params}:{params:Promise<{brand:string}>}) {
 
     
   return (
-    <div className='flex justify-center'>
+    <div className='flex justify-center container mx-auto'>
       <BrandProductsScreen brand={brand} />
     </div>
   )

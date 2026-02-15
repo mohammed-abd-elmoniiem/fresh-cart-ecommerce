@@ -7,6 +7,7 @@ import { productData } from '@/src/utils/types'
 import { toast } from 'react-toastify'
 import Card from './card/card'
 
+
 export default async  function Products() {
 
   
