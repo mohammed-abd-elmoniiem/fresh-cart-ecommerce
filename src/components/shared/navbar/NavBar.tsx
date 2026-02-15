@@ -13,7 +13,7 @@ import { stateStype, storeType } from '@/src/store/reduxStore/reduxStore'
 import  useLogOut  from '@/src/hooks/useLogOut'
 import { useQuery } from '@tanstack/react-query'
 import { fetchWishlist } from '@/src/features/wishlist/wishlist.actions'
-import { toast } from 'react-toastify'
+import toast from 'react-hot-toast'
 
 
 

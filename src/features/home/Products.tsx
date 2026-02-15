@@ -4,7 +4,8 @@
 import React from 'react'
 import { getAllProducts } from './server/home.actions'
 import { productData } from '@/src/utils/types'
-import { toast } from 'react-toastify'
+import toast from 'react-hot-toast'
+
 import Card from './card/card'
 
 

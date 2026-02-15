@@ -7,7 +7,8 @@ import { loginFormValues} from '../types'
 import {zodResolver} from '@hookform/resolvers/zod'
 import { loginSchema} from '../schema'
 import loginRequest from '../loginAction'
-import { toast } from 'react-toastify'
+import toast from 'react-hot-toast'
+
 import { useRouter } from 'next/navigation'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
  import { faMagnifyingGlass, faCircleStop, faIndent, faInfo, faSpinner } from "@fortawesome/free-solid-svg-icons";
@@ -55,10 +56,7 @@ export default function LoginForm() {
   
      if(res?.success === false){
 
-      toast.error(res?.message || 'there is a problem, try again later',{
-        position:'top-center',
-        autoClose:5000,
-      })
+      toast.error(res?.message || 'there is a problem, try again later')
 
 
       Object.keys(res?.errors).forEach(path=> {
@@ -72,10 +70,7 @@ export default function LoginForm() {
        
 
       // indication  to the user
-      toast.success(res?.message || 'logged in successfully',{
-        position:'top-center',
-        autoClose:5000,
-      })
+      toast.success(res?.message || 'logged in successfully')
 
 
       // set token in cookies

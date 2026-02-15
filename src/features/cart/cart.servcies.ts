@@ -1,5 +1,6 @@
 'use client'
-import { toast } from "react-toastify"
+import toast from 'react-hot-toast'
+
 import { addToCart, fetchLoggedUserCart } from "./cart.actions"
 
 import { updateCart } from "./cartReducer/cartReducer"

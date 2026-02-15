@@ -5,7 +5,8 @@ import { removeToken } from "../features/login/cookie/tokenCookie";
 
 import { setUserInfo } from "../features/login/reducers/authReducer";
 import { useRouter } from "next/navigation";
-import { toast } from "react-toastify";
+import toast from 'react-hot-toast'
+
 import { de } from "zod/v4/locales";
 import { queryClient } from "../providers";
 

@@ -7,7 +7,8 @@ import { newUser } from '../types'
 import {zodResolver} from '@hookform/resolvers/zod'
 import { signUpSchema } from '../schema'
 import signUpRequest from '../signUpAction'
-import { toast } from 'react-toastify'
+import toast from 'react-hot-toast'
+
 import { useRouter } from 'next/navigation'
 import { set } from 'zod'
 
@@ -53,10 +54,7 @@ export default function SignUpForm() {
   
      if(res?.success === false){
 
-      toast.error(res?.message || 'this is a problem, try again later',{
-        position:'top-center',
-        autoClose:5000,
-      })
+      toast.error(res?.message || 'this is a problem, try again later')
 
 
       Object.keys(res?.errors).forEach(path=> {
@@ -68,10 +66,7 @@ export default function SignUpForm() {
       });
      }else{
 
-      toast.success(res?.message || 'account created successfully',{
-        position:'top-center',
-        autoClose:5000,
-      })
+      toast.success(res?.message || 'account created successfully')
 
       setTimeout(()=>{
         router.push('/login')

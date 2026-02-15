@@ -1,7 +1,7 @@
 'use client'
 
 import React from 'react'
-import { ToastContainer, toast,Bounce } from 'react-toastify';
+import {Toaster} from 'react-hot-toast'
 import { store} from './store/reduxStore/reduxStore';
 import {Provider} from 'react-redux'
 import useStore from './store/useStore';
@@ -44,19 +44,7 @@ export default  function Providers({children}:{children:React.ReactNode}) {
     </QueryClientProvider>
     
 
-         <ToastContainer
-          position="top-center"
-          autoClose={5000}
-          hideProgressBar={false}
-          newestOnTop={false}
-          closeOnClick={false}
-          rtl={false}
-          pauseOnFocusLoss
-          draggable
-          pauseOnHover
-          theme="light"
-          transition={Bounce}
-/>
+        <Toaster position='top-right'/>
     </>
   )
 }

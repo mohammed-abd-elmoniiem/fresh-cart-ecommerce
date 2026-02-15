@@ -6,7 +6,8 @@ import {SubmitHandler, useForm} from 'react-hook-form'
 // import { onSubmit } from '../services'
 import {zodResolver} from '@hookform/resolvers/zod'
 
-import { toast } from 'react-toastify'
+import toast from 'react-hot-toast'
+
 import { useRouter } from 'next/navigation'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
  import { faMagnifyingGlass, faCircleStop, faIndent, faInfo, faSpinner } from "@fortawesome/free-solid-svg-icons";
@@ -59,10 +60,7 @@ export default function ResetCodeForm() {
   
      if(res.status != 'Success'){
 
-      toast.error( 'there is a problem, try again later',{
-        position:'top-center',
-        autoClose:2000,
-      })
+      toast.error( 'there is a problem, try again later')
 
 
      
@@ -70,10 +68,7 @@ export default function ResetCodeForm() {
        
 
       // indication  to the user
-      toast.success('ok' ,{
-        position:'top-center',
-        autoClose:2000,
-      })
+      toast.success('ok' )
 
 
     
