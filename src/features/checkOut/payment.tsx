@@ -1,25 +1,13 @@
 import React, { useMemo } from 'react'
-import type { Product } from './cart.type'
-import { clearUserCart } from './cart.actions';
 import { useDispatch } from 'react-redux';
-import { updateCart } from './cartReducer/cartReducer';
-import Link from 'next/link';
 
-export default function CartSummary({ products }: { products: Product[] }) {
+import Link from 'next/link';
+import { Product } from '../cart/cart.type';
+
+export default function PaymentSummary({ products }: { products: Product[] }) {
     const dispatch = useDispatch()
   
-    const clearCart = async() => {
-          try{
-                const response = await clearUserCart();
-                console.log('response update cart',response)
-                dispatch(
-                  updateCart(response)
-                )
-              }
-              catch(error){
-                console.log('Error clearing cart:', error)
-              }
-    }
+ 
 
 
   const { itemCount, total } = useMemo(() => {
@@ -58,26 +46,9 @@ export default function CartSummary({ products }: { products: Product[] }) {
         </div>
       </div>
 
-      <div className="mt-4">
-        <Link href={'/checkout'} className="w-full px-4 py-3 bg-main hover:bg-main/70 text-white text-sm font-medium rounded-md block text-center"
-        
-        
-        >
-          Checkout
-        </Link>
-      </div>
+   
 
-       <div className="mt-4">
-        <button className="w-full px-4 py-3 bg-rose-600 hover:bg-rose-700 text-white text-sm font-medium rounded-md"
-        onClick={()=>{
-          clearCart()
-
-        }}
-        
-        >
-          clear cart
-        </button>
-      </div>
+     
     </div>
   )
 }

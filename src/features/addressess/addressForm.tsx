@@ -13,7 +13,7 @@ import { set } from 'zod'
 
 import Link from 'next/link'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faPlusCircle, faSpinner, faUserPlus } from '@fortawesome/free-solid-svg-icons'
+import { faInfo, faPhone, faPlusCircle, faSpinner, faTreeCity, faUser, faUserPlus } from '@fortawesome/free-solid-svg-icons'
 import { Address } from './types'
 import { AddressSchema } from './addressSchena'
 import addAddressRequest from './addressAction'
@@ -94,13 +94,14 @@ export default function AddressForm() {
 
 
   return (
-   <form className="grid grid-cols-1 gap-2 bg-gray-50 items-center justify-center  w-4/5 text-[13px] lg:w-1/2  max-w-md p-1 rounded-2xl grow" action="#" onSubmit={handleSubmit(onSubmit)}>
-    <h2 className="capitalize  text-center   text-2xl"> add new address</h2>
+   <form className="grid grid-cols-1 gap-2  items-center justify-center  w-4/5 text-[13px] lg:w-1/2  max-w-md rounded-2xl grow p-2 bg-neutral-200/20 shadow-xl border border-gray-300" action="#" onSubmit={handleSubmit(onSubmit)}>
+    <h2 className="capitalize  text-center  text-gray-700 text-2xl"> add new address</h2>
 
-            <div className=' rounded-md  '>
-              <label htmlFor="name" className="capitalize font-light text-md ml-1">name</label>
+            <div className=' rounded-md '>
+              <label htmlFor="name" className="capitalize font-light text-md ml-1 text-main p-1  rounded-md">
+                <FontAwesomeIcon icon={faUser}/> name</label>
               <input type="text"
-               className=" bg-white text-black w-full border border-neutral-400  rounded-md px-2 py-1" placeholder="mohamed"
+               className="  text-black w-full bg-gray-100 rounded-md p-2 border border-white" placeholder="mohamed"
 
                {...register('name')}
 
@@ -114,9 +115,10 @@ export default function AddressForm() {
 
 
              <div className=' rounded-md  '>
-              <label htmlFor="name" className="capitalize font-light text-md ml-1">city</label>
+              <label htmlFor="city" className="capitalize font-light text-md ml-1 text-main p-1   rounded-md">
+                <FontAwesomeIcon className='mr-2' icon={faTreeCity}/>city</label>
               <input type="text"
-               className=" bg-white text-black w-full border border-neutral-400  rounded-md px-2 py-1" placeholder="giza"
+              className="  text-black w-full bg-gray-100 rounded-md p-2 border border-white" placeholder="giza"
 
                {...register('details')}
 
@@ -128,9 +130,10 @@ export default function AddressForm() {
 
             </div>
              <div className=' rounded-md  '>
-              <label htmlFor="name" className="capitalize font-light text-md ml-1">detials</label>
+              <label htmlFor="details" className="capitalize font-light text-md ml-1 text-main p-1  rounded-md">
+                <FontAwesomeIcon icon={faInfo}/>detials</label>
               <input type="text"
-               className=" bg-white text-black w-full border border-neutral-400  rounded-md px-2 py-1" placeholder="mohamed"
+                className="  text-black w-full bg-gray-100 rounded-md p-2 border border-white" placeholder="mohamed"
 
                {...register('details')}
 
@@ -139,9 +142,10 @@ export default function AddressForm() {
             </div>
             
              <div className=' rounded-md  '>
-              <label htmlFor="name" className="capitalize font-light text-md ml-1">phone</label>
+              <label htmlFor="phone" className="capitalize font-light text-md ml-1 text-main p-1  rounded-md">
+                <FontAwesomeIcon icon={faPhone}/>phone</label>
               <input type="text"
-               className=" bg-white text-black w-full border border-neutral-400  rounded-md px-2 py-1" placeholder="01150185968"
+                className="  text-black w-full bg-gray-100 rounded-md p-2 border border-white" placeholder="01150185968"
 
                {...register('phone')}
 
