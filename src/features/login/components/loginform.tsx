@@ -144,8 +144,8 @@ export default function LoginForm() {
            
             <div className="flex items-start flex-col">
               <div className="flex items-center h-5">
-                <input {...register('rememberMe')} type='checkbox' className=""/>
-                <label htmlFor="terms" className="font-light text-neutral-700 text-[12px] m-4">remember me
+                <input {...register('rememberMe')} type='checkbox' className="" />
+                <label htmlFor="rememberMe" className="font-light text-neutral-700 text-[12px] m-4">remember me
                   
                   
                   

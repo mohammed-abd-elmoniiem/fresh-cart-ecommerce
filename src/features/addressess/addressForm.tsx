@@ -38,7 +38,7 @@ export default function AddressForm() {
 
 
 
-      const {register,setError,handleSubmit,formState:{errors , isSubmitting}} = useForm<Address >({
+      const {register,setError,setValue,handleSubmit,formState:{errors , isSubmitting}} = useForm<Address >({
     defaultValues:{
       name:'moahmed abd elmoniem',
       

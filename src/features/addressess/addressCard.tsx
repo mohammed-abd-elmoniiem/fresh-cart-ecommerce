@@ -87,12 +87,7 @@ export default function AddressCard({ address}: Props) {
         </div>
 
         <div className="flex flex-col items-end gap-2">
-          <Link
-            href={`/profile/addresses/edit/${address._id}`}
-            className="text-xs px-3 py-1 bg-gray-50 border border-neutral-200 rounded text-gray-700 hover:bg-gray-100"
-          >
-            Edit
-          </Link>
+         
           <button
             type="button"
             onClick={()=>{

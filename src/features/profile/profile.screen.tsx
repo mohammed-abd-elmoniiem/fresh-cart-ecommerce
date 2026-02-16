@@ -12,6 +12,7 @@ import {
   faRightFromBracket,
   faLock,
   faBoxOpen,
+  faCity,
 } from '@fortawesome/free-solid-svg-icons'
 import { useSelector, useDispatch } from 'react-redux'
 import { stateStype } from '@/src/store/reduxStore/reduxStore'
@@ -115,6 +116,13 @@ export default function ProfileScreen() {
               <Link href="/orders" className="flex items-center gap-3 p-2 rounded-md hover:bg-gray-50">
                 <FontAwesomeIcon icon={faBoxOpen} />
                 <span className="text-sm font-medium">Your orders</span>
+              </Link>
+            </li>
+
+               <li>
+              <Link href="/my-addresses" className="flex items-center gap-3 p-2 rounded-md hover:bg-gray-50">
+                <FontAwesomeIcon icon={faCity} />
+                <span className="text-sm font-medium">my addresses</span>
               </Link>
             </li>
 
