@@ -9,7 +9,7 @@ export default function CategoriesCard({ category }: { category: Category }) {
   console.log(src)
 
   return (
-    <Link href={href} className="block h-15" aria-label={category.name}>
+    <Link href={href} className="block h-15 grow" aria-label={category.name}>
       <div className="bg-white rounded-lg  shadow-sm hover:shadow-md transition flex itmems-center ">
         <div className="   w-12 aspect-square bg-gray-100 flex justify-center items-center ">
           <Image src={src} alt={category.name}  className="object-contain " width={100} height={100}/>
