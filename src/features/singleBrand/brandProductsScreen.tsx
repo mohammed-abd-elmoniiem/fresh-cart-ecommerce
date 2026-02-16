@@ -5,6 +5,7 @@ import React from 'react'
 import { fetchBrandProducts } from './brandProduct.action'
 import { productData } from '@/src/utils/types'
 import Card from '../home/card/card'
+import Loading from '@/src/app/loading'
 
 export default function BrandProductsScreen({brand}:{brand:string}) {
 
@@ -16,7 +17,7 @@ export default function BrandProductsScreen({brand}:{brand:string}) {
       })
 
       if(status == 'pending'){
-          return <div>Loading...</div>
+          return <Loading/>
       }
 
       if(status === 'error'){
@@ -27,7 +28,8 @@ export default function BrandProductsScreen({brand}:{brand:string}) {
 
   return (
     <div className='grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 p-2 gap-2 justify-between'>
-        {data && data.data.map((product:productData)=><Card key={product.id} product={product} />)}
+        {data && data.data.map((product:productData)=><Card key={product._id} product={product} />)}
+        {data.data.length == 0 && <p>empty</p>}
     </div>
   )
 }

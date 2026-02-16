@@ -95,7 +95,7 @@ export default function AddressForm() {
 
   return (
    <form className="grid grid-cols-1 gap-2 bg-gray-50 items-center justify-center  w-4/5 text-[13px] lg:w-1/2  max-w-md p-1 rounded-2xl grow" action="#" onSubmit={handleSubmit(onSubmit)}>
-    <h2 className="capitalize  text-center   text-2xl"> create your account</h2>
+    <h2 className="capitalize  text-center   text-2xl"> add new address</h2>
 
             <div className=' rounded-md  '>
               <label htmlFor="name" className="capitalize font-light text-md ml-1">name</label>

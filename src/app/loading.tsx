@@ -43,7 +43,7 @@ export default function Loading() {
 
     function createCircles(n:number,rad:number , distance:number ){
 
-        return createCireclesPoints(n,distance).map(point=> <circle key={` ${Math.random() + point.x}`} className={`circle transform-fill text-main`} cx={point.x + center.x} cy={point.y +center.y}  fill="" r={rad}/>)
+        return createCireclesPoints(n,distance).map(point=> <circle key={` ${Math.random() + point.x}`} className={`circle transform-fill fill-main`} cx={point.x + center.x} cy={point.y +center.y}  fill="" r={rad}/>)
 
     }
   return (

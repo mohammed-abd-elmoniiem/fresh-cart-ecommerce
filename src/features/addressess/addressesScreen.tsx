@@ -43,7 +43,8 @@ export default function AddressesScreen() {
                 empty
             </div>
             
-            </>:<div className='flex flex-wrap gap-5 items-center justify-center' >
+            </>:<div className='flex flex-wrap gap-5 items-center justify-center py-3 bg-main/5 p-2 rounded-lg' >
+                   <h2 className="w-full flex justify-start capitalize  bg-main text-white shadow p-1 rounded-md text-2xl font-light">your currnt addresses {data.data.length}</h2>
 
                         {
                             data.data.map((address:Address)=><AddressCard key={address._id} address={address} />)
