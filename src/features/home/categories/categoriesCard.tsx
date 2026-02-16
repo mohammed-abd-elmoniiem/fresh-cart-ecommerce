@@ -6,12 +6,13 @@ import { Category } from './categoreies.types'
 export default function CategoriesCard({ category }: { category: Category }) {
   const href = `/subcategory/${ category._id }`
   const src = category.image
+  console.log(src)
 
   return (
-    <Link href={href} className="block w-12" aria-label={category.name}>
-      <div className="bg-white rounded-lg  shadow-sm hover:shadow-md transition flex p-2 ">
-        <div className="   rounded-full aspect-square overflow-hidden bg-gray-100 flex justify-center items-center ">
-          <Image src={src} alt={category.name}  className="object-contain rounded-full  w-full" width={100} height={100}/>
+    <Link href={href} className="block h-15" aria-label={category.name}>
+      <div className="bg-white rounded-lg  shadow-sm hover:shadow-md transition flex itmems-center ">
+        <div className="   w-12 aspect-square bg-gray-100 flex justify-center items-center ">
+          <Image src={src} alt={category.name}  className="object-contain " width={100} height={100}/>
         </div>
 
         <div className="p-2">

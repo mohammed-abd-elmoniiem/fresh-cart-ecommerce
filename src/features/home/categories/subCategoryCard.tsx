@@ -9,7 +9,7 @@ export default function SubCategoriesCard({ category }: { category: Category }) 
 
   return (
     <Link href={href} className="block" aria-label={category.name}>
-      <div className="bg-white border border-neutral-200 rounded-lg overflow-hidden shadow-sm hover:shadow-md transition ">
+      <div className="bg-white border border-neutral-200 rounded-lg  shadow-sm hover:shadow-md transition ">
        
 
         <div className="p-4">

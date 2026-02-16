@@ -35,7 +35,7 @@ export default function ForgetPasswordForm() {
       const {register,setError,handleSubmit,formState:{errors,isSubmitting}} = useForm<fortgetPasswordFormValues >({
     defaultValues:{
       
-      email:'mohamed.abd.elmoniiem@gmail.com'
+      email:'mohammed.abd.elmoniiem@gmail.com'
      
    
 
