@@ -161,7 +161,7 @@ export  async function removeAddressRequest(addressId:string):Promise<responseAd
               
             return {
                status:'error',
-               message:  error?.response?.data?.message
+               message: ' failed to remove address'
                ,data:[]
             }
                 
