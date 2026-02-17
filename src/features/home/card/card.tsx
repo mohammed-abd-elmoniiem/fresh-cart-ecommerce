@@ -41,7 +41,7 @@ export default function Card({ product,isWished=false }: CardProps) {
         })
 
      const{status:removeState  ,refetch:removeRefetch}  = useQuery({
-          queryKey:['wishlistAfterREmoving'],
+          queryKey:['wishlistAfterRemoving'],
           queryFn:async ()=>{
             return await removeFromWishlist(product.id)
 

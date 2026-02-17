@@ -76,7 +76,9 @@ export default function CartItem({ product }: Props) {
   }
 
   return (
-    <Link href={`/product/${product.product.id}`} className="flex items-center w-full gap-4 p-2 bg-white rounded-lg shadow-sm border border-neutral-200">
+    <div  className="flex items-center w-full gap-4 p-2 bg-white rounded-lg shadow-sm border border-neutral-200 relative">
+
+      <Link href={`/product/${product.product.id}`} className=" inset-0 z-10" >
       <div className="relative w-20 h-20 rounded-md overflow-hidden bg-gray-50">
         <Image src={product.product.imageCover} alt={String(product.product.title ?? 'product')} fill className="object-cover" />
       </div>
@@ -93,7 +95,7 @@ export default function CartItem({ product }: Props) {
             <button
               onClick={remove}
               aria-label="Remove item"
-              className="mt-2 text-xs text-rose-600 bg-rose-400/20 p-2 rounded-full hover:underline"
+              className="mt-2 text-xs text-rose-600 bg-rose-400/20 p-2 rounded-full hover:underline z-5"
               type="button"
             >
               <FontAwesomeIcon icon={faTrash}/>
@@ -101,7 +103,7 @@ export default function CartItem({ product }: Props) {
           </div>
         </div>
 
-        <div className="mt-3 flex items-center justify-between gap-3">
+        <div className="mt-3 flex items-center justify-between gap-3 z-5">
           <div className="flex items-center gap-2">
             <label className="text-xs text-gray-500 mr-2">Quantity</label>
 
@@ -112,7 +114,7 @@ export default function CartItem({ product }: Props) {
                   decrease()
                    updateQty(qty-1)
                 }}
-                className="px-3 py-1 text-sm text-gray-700 hover:bg-gray-100"
+                className="px-3 py-1 text-sm text-gray-700 hover:bg-gray-100 "
                 aria-label="Decrease quantity"
 
                 
@@ -140,6 +142,8 @@ export default function CartItem({ product }: Props) {
           </div>
         </div>
       </div>
-    </Link>
+      
+      </Link>
+    </div>
   )
 }
