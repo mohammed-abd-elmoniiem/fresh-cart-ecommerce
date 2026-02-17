@@ -40,7 +40,7 @@ input:focus {
 li a {
   width: max-content;
   padding: 3px 9px;
-  font-weight: 200;
+  font-weight: 400;
 }
 
 li > a:hover {

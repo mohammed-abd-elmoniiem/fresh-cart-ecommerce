@@ -45,9 +45,9 @@ export default function NavBar() {
 
   const isAuthenticated = useSelector((state:stateStype)=>state.authReducer.isAuthentication)
   return (
-    <div className='container mx-auto px-2  bg-white'>
+    <div className='container mx-auto px-2 py-1  bg-white sticky top-0 z-50'>
 
-      <div className="top  hidden md:flex flex-wrap justify-between text-[12px] font-light capitalize container mx-auto border-b border-dashed  border-neutral-400">
+      <div className="top  hidden md:flex flex-wrap justify-between text-[12px] font-light capitalize container mx-auto border-b border-dashed  border-neutral-400 ">
         <ul className="   gap-3">
 
           <li className="">
@@ -102,7 +102,7 @@ export default function NavBar() {
         </ul>
       </div>
 
-      <div className="center flex justify-between items-center gap-2 flex-wrap  text-sm  capitalize container mx-auto p-2  sticky top-1">
+      <div className="center flex justify-between items-center gap-2 flex-wrap  text-sm  capitalize container mx-auto p-2   bg-white">
 
         <div className="logo">
 
@@ -118,7 +118,7 @@ export default function NavBar() {
 
         </div>
 
-        <div className="pages text-neutral-800 flex justify-end font-ligh   ">
+        <div className="pages text-neutral-800 flex justify-end  ">
 
           <div className="md:hidden flex items-center">
 
@@ -135,9 +135,9 @@ export default function NavBar() {
            
           
 
-          <ul className={` ${!toggle?'flex md:flex':'hidden md:flex '} gap-2 absolute bg-white border rounded-md w-1/2 md:w-fit p-2 top-0 right-2 flex-col z-20 justify-start
-          
-          md:p-0 md:border-none md:static md:flex-row  `}
+          <ul className={` ${!toggle?'flex md:flex':'hidden md:flex '} gap-2 absolute bg-white border-l w-2/3   p-2 top-0 right-0 flex-col z-20 justify-start min-h-screen
+          md:w-fit
+          md:p-0 md:border-none md:static md:flex-row md:min-h-auto `}
 
           onClick={()=>{
             settoggle(true)
@@ -148,7 +148,7 @@ export default function NavBar() {
 
             <li className="md:hidden">
 
-                <FontAwesomeIcon className=" justify-self-end  bg-rose-500 text-white border p-2 text-md rounded-md" icon={toggle ?  faBars : faClose}
+                <FontAwesomeIcon className=" ml-auto bg-rose-500 text-white border p-2 text-md rounded-md" icon={toggle ?  faBars : faClose}
 
               onClick={()=>{
                 settoggle(!toggle)
@@ -163,7 +163,7 @@ export default function NavBar() {
             
 
 
-            <div className="search block md:hidden border border-neutral-600/40 rounded-md p-1">
+            <div className="search block md:hidden border border-neutral-600/40 rounded-md p-1 font-normal">
 
               <input type="search" className="" placeholder='search for products' />
 
@@ -179,7 +179,7 @@ export default function NavBar() {
                           wishlist
                         <span className="absolute -top-1 -right-1 bg-main flex justify-start items-center   text-[12px] p-1 aspect-square text-white rounded-full">
                           {isLoading&&<FontAwesomeIcon icon={faSpinner} spin/>}
-                             {data?.data?.length || '0'}
+                             {!isLoading&&data?.data?.length || '0'}
                           </span>
                         </Link>
 
@@ -187,11 +187,14 @@ export default function NavBar() {
 
                       <li className="">
                         <Link href={'/cart'} className="flex md:flex-col  gap-1 justify-start items-center hover:text-main relative ">
+
                         <FontAwesomeIcon icon={faCartFlatbed}/>
                           cart
 
-                          <span className="absolute -top-1 -right-1 bg-main flex justify-start items-center   text-[12px] p-1 aspect-square text-white rounded-full">
-                            {numsOfItems}
+                          <span className="absolute -top-1 -right-1 bg-main flex justify-start items-center   text-[12px] font-normal p-1 aspect-square text-white rounded-full">
+                            { numsOfItems}
+
+                            
                           </span>
                         </Link>
                       </li>
@@ -229,15 +232,15 @@ export default function NavBar() {
             }
 
     {/* top */}
-             <div className="top  flex md:hidden flex-wrap justify-between text-[12px] font-light capitalize container mx-auto border-b border-dashed  border-neutral-400">
+             <div className="top  flex md:hidden flex-wrap justify-between text-[12px] capitalize container mx-auto border-b border-dashed  border-neutral-400">
        
 
         <ul className=" flex flex-col gap-3">
           <h2 className="">quick links</h2>
 
           <li className="">
-             <Link href={'/track-order'}>
-              track order
+             <Link href={'/allOrders'}>
+               orders
             </Link>
           </li>
           <li className="">
@@ -251,7 +254,7 @@ export default function NavBar() {
             </Link>
           </li>
 
-          <li className="">
+          {/* <li className="">
             <select name="currency" id="" className="">
               <option >EGP</option>
               <option >USD</option>
@@ -266,7 +269,7 @@ export default function NavBar() {
               <option value={'ar'} >العربية</option>
 
             </select>
-          </li>
+          </li> */}
 
         </ul>
 
