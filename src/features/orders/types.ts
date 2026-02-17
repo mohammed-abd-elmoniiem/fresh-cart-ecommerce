@@ -1,46 +1,13 @@
-import { Addresses } from "next/dist/build/turborepo-access-trace/types"
-
-
-export interface PaymentInfo{
-    cartId:string,
-    url:string
-    paymentMethod:string,
-    shippingAddress:ShippingAddress
-
+export interface Root {
+  data: orderInfoType[]
+  status: number
+  statusText: string
+  headers: Headers
+  config: Config
+  request: Request
 }
 
-export interface  ShippingAddress{
-         details:string,
-        city:string,
-        postalCode?:string,
-        phone:string,
-        _id?:string
-    }
-
-
-
-export interface ResponseCart {
-  status: string
-  message: string
-  user: User
-  pricing: Pricing
-  data: Data
-}
-
-export interface User {
-  id: string
-  name: string
-  email: string
-}
-
-export interface Pricing {
-  cartPrice: number
-  taxPrice: number
-  shippingPrice: number
-  totalOrderPrice: number
-}
-
-export interface Data {
+export interface orderInfoType{
   taxPrice: number
   shippingPrice: number
   totalOrderPrice: number
@@ -48,15 +15,16 @@ export interface Data {
   isPaid: boolean
   isDelivered: boolean
   _id: string
-  user: User2
+  user: User
   cartItems: CartItem[]
   createdAt: string
   updatedAt: string
   id: number
   __v: number
+  paidAt?: string
 }
 
-export interface User2 {
+export interface User {
   _id: string
   name: string
   email: string
@@ -103,14 +71,38 @@ export interface Brand {
   image: string
 }
 
-
-export interface ResponseOnline {
-  status: string
-  session: Session
+export interface Headers {
+  "content-type": string
 }
 
-export interface Session {
+export interface Config {
+  transitional: Transitional
+  adapter: string[]
+  transformRequest: any[]
+  transformResponse: any[]
+  timeout: number
+  xsrfCookieName: string
+  xsrfHeaderName: string
+  maxContentLength: number
+  maxBodyLength: number
+  env: Env
+  headers: Headers2
   url: string
-  success_url: string
-  cancel_url: string
+  method: string
+  allowAbsoluteUrls: boolean
 }
+
+export interface Transitional {
+  silentJSONParsing: boolean
+  forcedJSONParsing: boolean
+  clarifyTimeoutError: boolean
+  legacyInterceptorReqResOrdering: boolean
+}
+
+export interface Env {}
+
+export interface Headers2 {
+  Accept: string
+}
+
+export interface Request {}

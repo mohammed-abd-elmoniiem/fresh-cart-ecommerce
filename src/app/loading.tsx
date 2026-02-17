@@ -52,7 +52,7 @@ export default function Loading() {
     className='flex items-center justify-center'
     
     >
-        <svg className=' w-55 h-55'>
+        <svg width={200} height={200}>
             {createCircles(1,16, 0)}
 
 

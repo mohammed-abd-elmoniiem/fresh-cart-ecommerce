@@ -45,7 +45,7 @@ export default function NavBar() {
 
   const isAuthenticated = useSelector((state:stateStype)=>state.authReducer.isAuthentication)
   return (
-    <div className='container mx-auto px-2'>
+    <div className='container mx-auto px-2  bg-white'>
 
       <div className="top  hidden md:flex flex-wrap justify-between text-[12px] font-light capitalize container mx-auto border-b border-dashed  border-neutral-400">
         <ul className="   gap-3">
@@ -67,8 +67,8 @@ export default function NavBar() {
         <ul className=" flex gap-3">
 
           <li className="">
-             <Link href={'/track-order'}>
-              track order
+             <Link href={'/allOrders'}>
+              all orders
             </Link>
           </li>
           <li className="">
@@ -102,7 +102,7 @@ export default function NavBar() {
         </ul>
       </div>
 
-      <div className="center flex justify-between items-center gap-2 flex-wrap  text-sm  capitalize container mx-auto p-2  ">
+      <div className="center flex justify-between items-center gap-2 flex-wrap  text-sm  capitalize container mx-auto p-2  sticky top-1">
 
         <div className="logo">
 

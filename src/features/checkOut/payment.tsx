@@ -26,7 +26,7 @@ export default function PaymentSummary({ products }: { products: Product[] }) {
     new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(v)
 
   return (
-    <div className=" bg-white border border-neutral-200 rounded-lg p-4 shadow-sm h-fit sticky top-5">
+    <div className=" bg-white border border-neutral-200 rounded-lg p-4 shadow-sm h-fit ">
       <h2 className="text-lg font-medium text-gray-900">Order summary</h2>
 
       <div className="mt-4 space-y-3 text-sm text-gray-700">

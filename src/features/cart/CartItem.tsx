@@ -9,6 +9,7 @@ import { faTrash } from '@fortawesome/free-solid-svg-icons'
 import { useDispatch } from 'react-redux'
 import { clearUserCart, removeItemCart, updateCountItemCart } from './cart.actions'
 import { updateCart } from './cartReducer/cartReducer'
+import Link from 'next/link'
 
 interface Props {
   product: Product
@@ -75,7 +76,7 @@ export default function CartItem({ product }: Props) {
   }
 
   return (
-    <div className="flex items-center w-full gap-4 p-2 bg-white rounded-lg shadow-sm border border-neutral-200">
+    <Link href={`/product/${product.product.id}`} className="flex items-center w-full gap-4 p-2 bg-white rounded-lg shadow-sm border border-neutral-200">
       <div className="relative w-20 h-20 rounded-md overflow-hidden bg-gray-50">
         <Image src={product.product.imageCover} alt={String(product.product.title ?? 'product')} fill className="object-cover" />
       </div>
@@ -139,6 +140,6 @@ export default function CartItem({ product }: Props) {
           </div>
         </div>
       </div>
-    </div>
+    </Link>
   )
 }
