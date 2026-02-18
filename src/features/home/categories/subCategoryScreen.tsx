@@ -1,9 +1,11 @@
 'use client'
+import Loading from '@/src/app/loading'
 import { fetchCategories, fetchSpecificCategory, fetchSubCategories } from './categories.actions'
 import CategoriesCard from './categoriesCard'
 import SubCategoriesCard from './subCategoryCard'
 import { useQuery } from '@tanstack/react-query'
 import { is } from 'zod/v4/locales'
+import toast from 'react-hot-toast'
 
 export default  function SubCategoriesScreen({subcategoryId}: {subcategoryId: string}) {
 
@@ -19,8 +21,11 @@ export default  function SubCategoriesScreen({subcategoryId}: {subcategoryId: st
 
     // if(!response){}
     // console.log('categories response', response)
-    if(isLoading) return <p>Loading...</p>
-    if(status === 'error') return <p className="">error in return server</p>
+    if(isLoading) return <Loading/>
+    if(status === 'error')  {
+        toast.error('error in loading subcategories')
+        return <></>
+       }
 
     if(status == 'success') console.log(subcategories)
 

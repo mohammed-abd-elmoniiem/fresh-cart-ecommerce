@@ -3,6 +3,7 @@ import React from 'react'
 import Slider from './slider'
 import Products from './Products'
 import CategoriesScreen from './categories/CategoriesScreen'
+import Brands from '@/src/app/(dynamic-pages)/brands/page'
 
 
 export default function HomeScreen() {
@@ -36,11 +37,12 @@ export default function HomeScreen() {
 
          <div className="w-full relative">
             <Slider/>
-            
          </div>
 
          <Products/>
          <CategoriesScreen/>
+
+         <Brands/>
     </div>
   )
 }

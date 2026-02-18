@@ -17,9 +17,9 @@ export default  function CategoriesScreen() {
 
   return (
     <div className='container mx-auto  '>
-      <h2 className="text-xl border-l border-main  py-4">Categories</h2>
+     <h2 className='capitalize p-3 w-full text-xl bg-main/5 border-main border-l-8'>categories</h2>
 
-      <div className="flex flex-wrap justify-center gap-2">
+      <div className="flex flex-wrap justify-center gap-2 py-6">
         {
           response != null ?
           response.map(category => (

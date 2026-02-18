@@ -17,15 +17,15 @@ export default function Loading() {
         <div className="relative flex items-center justify-center">
           <div className="w-20 h-20 rounded-full border-[3px] border-black/10"></div>
 
-          <div className="absolute w-20 h-20 rounded-full border-[3px] border-transparent border-t-indigo-500 border-r-purple-500 animate-spin"></div>
+          <div className="absolute w-20 h-20 rounded-full border-[3px] border-transparent border-t-lime-500 border-r-main animate-spin"></div>
 
           <div className="absolute w-14 h-14 rounded-full bg-linear-to-br from-indigo-500 to-purple-600 blur-xl opacity-40"></div>
         </div>
 
         {/* Text Section */}
         <div className="text-center space-y-2">
-          <h2 className="text-2xl font-semibold tracking-wide bg-linear-to-r from-black to-gray-400 bg-clip-text text-transparent">
-            Preparing Your Experience
+          <h2 className="text-2xl font-semibold tracking-wide bg-linear-to-r from-black to-gray-400 bg-clip-text text-neutral-900 capitalize">
+            working on it
           </h2>
 
           <p className="text-sm text-neutral-800 animate-pulse">
@@ -35,7 +35,7 @@ export default function Loading() {
 
         {/* Animated Progress Bar */}
         <div className="w-64 h-1 bg-white/10 rounded-full overflow-hidden">
-          <div className="h-full w-1/2 bg-linear-to-r from-indigo-500 to-purple-500 animate-[loading_1.5s_ease-in-out_infinite]"></div>
+          <div className="h-full w-1/2 bg-linear-to-r from-main to-lime-500 animate-[loading_1.5s_ease-in-out_infinite]"></div>
         </div>
 
       </div>

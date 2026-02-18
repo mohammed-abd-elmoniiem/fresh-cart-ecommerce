@@ -22,8 +22,8 @@ export default async  function Products() {
 
   return (
     <div className='container mx-auto px-4 py-8'>
-        <h1>Products</h1>
-        <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4'>
+        <h2 className='capitalize p-3 text-xl bg-main/5 border-main border-l-8'>featured Products</h2>
+        <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 py-5'>
             {AllProducts?.map((product: productData) => (
                 <Card key={product.id} product={product} />
             ))}

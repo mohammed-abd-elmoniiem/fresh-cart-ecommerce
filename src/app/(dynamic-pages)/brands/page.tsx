@@ -4,9 +4,7 @@ import React from 'react'
 export default function Brands() {
   return (
     <div className='container mx-auto py-4'>
-       <h2 className="text-center my-6 text-2xl font-light text-gray-800">
-         All Brands
-      </h2>
+       <h2 className='capitalize p-3 text-xl bg-main/5 border-main border-l-8'>brands</h2>
       <BrandsScreen/>
     </div>
   )

@@ -9,7 +9,7 @@ import { faHome, faUser } from '@fortawesome/free-solid-svg-icons'
 
 export default function NotFound() {
   return (
-    <div className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-neutral-100 via-tone-200 to-gray-300 text-white px-6 py-12">
+    <div className="relative min-h-screen flex items-center justify-center overflow-hidden bg-linear-to-br from-neutral-100 via-tone-200 to-gray-300 text-white px-6 py-12">
 
       {/* Animated Glow Background */}
       {/* <div className="absolute w-[600px] h-[600px] bg-main/30 rounded-full blur-[140px] top-[-200px] left-[-200px] animate-pulse"></div>

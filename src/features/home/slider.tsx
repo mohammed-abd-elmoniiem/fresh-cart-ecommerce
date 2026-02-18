@@ -13,6 +13,8 @@ import 'swiper/css/pagination'
 import 'swiper/css/thumbs'
 import { fetchCategories } from './categories/categories.actions'
 import { useQuery } from '@tanstack/react-query'
+import Loading from '@/src/app/loading'
+import toast from 'react-hot-toast'
 
 // const slides = [
  
@@ -105,8 +107,11 @@ export default function PremiumSlider() {
      })
     
    
-       if(isLoading) return <p>Loading...</p>
-       if(status==='error') return <p>Error loading categories</p>
+       if(isLoading) return<Loading/>
+       if(status==='error'  ) {
+        toast.error('error in loading categories')
+        return <></>
+       }
   
 
   const animateSlide = (deal: number) => {
@@ -134,8 +139,13 @@ export default function PremiumSlider() {
     )
   }
 
-  return (
-    <div className="relative w-full h-screen overflow-hidden bg-black">
+  if(categories === undefined || categories === null ){
+        toast.error('error in loading categories')
+        return <></>
+       }
+
+  return (<>
+  {  categories&&<div className="relative w-full h-screen overflow-hidden bg-black">
       <Swiper
         modules={[Navigation, Pagination, Thumbs, Autoplay]}
         thumbs={{ swiper: thumbsSwiper }}
@@ -213,6 +223,6 @@ export default function PremiumSlider() {
           </SwiperSlide>
         ))}
       </Swiper>
-    </div>
+    </div>}</>
   )
 }
