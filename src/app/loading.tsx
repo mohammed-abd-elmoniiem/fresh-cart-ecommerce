@@ -1,70 +1,54 @@
 'use client'
 
-import gsap from 'gsap'
-import { useGSAP } from '@gsap/react'
+import React from 'react'
 
 export default function Loading() {
-
-    gsap.registerPlugin(useGSAP)
-
-    const center = {
-        x:110,
-        y:110
-    }
-    useGSAP(()=>{
-        gsap.to('svg circle.circle',{
-            duration:0.3,
-            opacity:0,
-            
-            stagger:{
-                each:0.1,
-                
-            },
-            yoyo:true,
-            repeat:-1,
-            
-        })
-    })
-
-    function createCireclesPoints(n:number,distance:number){
-        const arrPoints = []
-
-        const phase = (1/n)*Math.PI
-        for (let i = 0; i < n; i++) {
-            arrPoints.push({
-                x:distance * Math.cos((i/n)*Math.PI*2 + phase ),
-                y:distance * Math.sin((i/n)*Math.PI*2 + phase)
-            })
-            
-        }
-
-        return arrPoints
-    }
-
-    function createCircles(n:number,rad:number , distance:number ){
-
-        return createCireclesPoints(n,distance).map(point=> <circle key={` ${Math.random() + point.x}`} className={`circle transform-fill fill-main`} cx={point.x + center.x} cy={point.y +center.y}  fill="" r={rad}/>)
-
-    }
   return (
-    <div
+    <div className="relative min-h-screen flex items-center justify-center overflow-hidden text-white">
 
-    className='flex items-center justify-center'
-    
-    >
-        <svg width={200} height={200}>
-            {createCircles(1,16, 0)}
+      {/* Animated Glow Orbs */}
+      {/* <div className="absolute w-[500px] h-[500px] bg-indigo-600/30 rounded-full blur-[140px] top-[-200px] left-[-200px] animate-pulse"></div>
+      <div className="absolute w-[400px] h-[400px] bg-purple-600/20 rounded-full blur-[140px] bottom-[-150px] right-[-150px] animate-pulse"></div> */}
 
+      {/* Glass Card */}
+      <div className="relative  bg-linear-to-br from-slate-100 via-slate-200 to-white border border-white/10 shadow-2xl rounded-3xl px-12 py-10 flex flex-col items-center gap-8">
 
-            {createCircles(8,8, 25)}
-            {createCircles(24,4 , 37)}
-            {createCircles(20,2 , 45)}
+        {/* Premium Spinner */}
+        <div className="relative flex items-center justify-center">
+          <div className="w-20 h-20 rounded-full border-[3px] border-black/10"></div>
 
+          <div className="absolute w-20 h-20 rounded-full border-[3px] border-transparent border-t-indigo-500 border-r-purple-500 animate-spin"></div>
 
-
-
-        </svg>
-        
+          <div className="absolute w-14 h-14 rounded-full bg-linear-to-br from-indigo-500 to-purple-600 blur-xl opacity-40"></div>
         </div>
+
+        {/* Text Section */}
+        <div className="text-center space-y-2">
+          <h2 className="text-2xl font-semibold tracking-wide bg-linear-to-r from-black to-gray-400 bg-clip-text text-transparent">
+            Preparing Your Experience
+          </h2>
+
+          <p className="text-sm text-neutral-800 animate-pulse">
+            Please wait while we load everything beautifully...
+          </p>
+        </div>
+
+        {/* Animated Progress Bar */}
+        <div className="w-64 h-1 bg-white/10 rounded-full overflow-hidden">
+          <div className="h-full w-1/2 bg-linear-to-r from-indigo-500 to-purple-500 animate-[loading_1.5s_ease-in-out_infinite]"></div>
+        </div>
+
+      </div>
+
+      {/* Custom Animation */}
+      <style jsx>{`
+        @keyframes loading {
+          0% { transform: translateX(-100%); }
+          50% { transform: translateX(100%); }
+          100% { transform: translateX(300%); }
+        }
+      `}</style>
+
+    </div>
   )
 }
