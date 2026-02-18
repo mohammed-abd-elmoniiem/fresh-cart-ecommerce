@@ -1,4 +1,4 @@
-
+'use client'
 
 import React from 'react'
 import Link from 'next/link'
@@ -17,19 +17,31 @@ import { stateStype } from '@/src/store/reduxStore/reduxStore'
 import { useQuery } from '@tanstack/react-query'
 import { addToWishlist } from '../../wishlist/wishlist.actions'
 import { queryClient } from '@/src/providers'
+import Loading from '@/src/app/loading'
 
-export default async function SingleProductScreen({ id }: { id: string }) {
-  const product: productData | null = await getSingleProduct(id);
+export default  function SingleProductScreen({ id }: { id: string }) {
+  // const product: productData | null = await getSingleProduct(id);
+const auth = useSelector((state: stateStype) => state.authReducer)
+    const {data:product,isLoading ,error ,status} = useQuery({
+      queryKey:['singleProduct'],
+      queryFn:async()=>{
+        return await getSingleProduct(id)
+      }
+    })
 
 
-    const auth = useSelector((state: stateStype) => state.authReducer)
-  
-  
-  
+    if(isLoading)return <Loading/>
+    if(status =='error') {
+      toast.error('cant load the product data,try again!')
+    
+    }
+
+    
+    
+
+
 
   
-   
-            
        
 
     const handleAddToWishlist = async (id:string) => {
@@ -54,6 +66,7 @@ export default async function SingleProductScreen({ id }: { id: string }) {
    
   }
 
+  console.log('single product data', product)
 
   if (!product) {
     return (
@@ -70,7 +83,7 @@ export default async function SingleProductScreen({ id }: { id: string }) {
           {/* image slider (client) */}
           <ProductImages images={product.images} />
 
-          {product.availableColors && product.availableColors.length > 0 && (
+          {/* {product.availableColors && product.availableColors.length > 0 && (
             <div className="mt-4">
               <h4 className="text-xs text-gray-500 mb-2">Available colors</h4>
               <div className="flex gap-2">
@@ -84,7 +97,7 @@ export default async function SingleProductScreen({ id }: { id: string }) {
                 ))}
               </div>
             </div>
-          )}
+          )} */}
         </section>
 
         <section>
@@ -92,7 +105,7 @@ export default async function SingleProductScreen({ id }: { id: string }) {
           <p className="text-sm text-gray-500 mt-1 truncate">{product.brand?.name}</p>
 
           <div className="mt-4 flex items-center gap-4">
-            <div>
+            {/* <div>
               {product.priceAfterDiscount ? (
                 <div className="flex items-baseline gap-2">
                   <span className="text-2xl font-semibold text-rose-600">
@@ -105,7 +118,7 @@ export default async function SingleProductScreen({ id }: { id: string }) {
               )}
 
               <div className="text-xs text-gray-500 mt-1">Qty available: {product.quantity}</div>
-            </div>
+            </div> */}
 
             <div className="ml-auto text-right">
               <div className="text-sm font-semibold">
@@ -167,3 +180,4 @@ export default async function SingleProductScreen({ id }: { id: string }) {
     </div>
   )
 }
+
