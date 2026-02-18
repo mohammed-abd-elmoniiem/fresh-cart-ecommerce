@@ -4,7 +4,7 @@ import Image from 'next/image'
 import { Category } from './categoreies.types'
 
 export default function CategoriesCard({ category }: { category: Category }) {
-  const href = `/subcategory/${ category._id }`
+  const href = `/categories/${ category.category }/products`
   const src = category.image
   console.log(src)
 

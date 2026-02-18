@@ -5,7 +5,7 @@ import Link from 'next/link'
 
 export default function BrandCard({ brand }:{brand:Brand}) {
   return (
-    <Link className='flex flex-col items-center gap-2 rounded-lg shadow p-2 '
+    <Link className='flex flex-col items-center gap-2 rounded-lg shadow p-2 mx-1 '
 
     href={`/brand/${brand._id}/products`}
     

@@ -11,8 +11,8 @@ export default async function Subcategories({ params }:{params:Promise<{ subcate
 
     
   return (
-    <div>Subcategories
-
+    <div className='container mx-auto'>
+  
       <SubCategoriesScreen subcategoryId={p.subcategoryId} />
     </div>
   )

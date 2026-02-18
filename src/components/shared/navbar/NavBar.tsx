@@ -67,7 +67,7 @@ export default function NavBar() {
         <ul className=" flex gap-3">
 
           <li className="">
-             <Link href={'/allOrders'}>
+             <Link href={'/allorders'}>
               all orders
             </Link>
           </li>
@@ -239,7 +239,7 @@ export default function NavBar() {
           <h2 className="">quick links</h2>
 
           <li className="">
-             <Link href={'/allOrders'}>
+             <Link href={'/allorders'}>
                orders
             </Link>
           </li>

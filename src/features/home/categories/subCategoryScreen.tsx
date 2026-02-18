@@ -1,15 +1,28 @@
-import React from 'react'
+'use client'
 import { fetchCategories, fetchSpecificCategory, fetchSubCategories } from './categories.actions'
 import CategoriesCard from './categoriesCard'
 import SubCategoriesCard from './subCategoryCard'
+import { useQuery } from '@tanstack/react-query'
+import { is } from 'zod/v4/locales'
 
-export default async function SubCategoriesScreen({subcategoryId}: {subcategoryId: string}) {
+export default  function SubCategoriesScreen({subcategoryId}: {subcategoryId: string}) {
 
-    const response = await fetchSubCategories(subcategoryId)
+  const  {data:subcategories , status ,error ,isLoading} = useQuery({
+    queryKey:['subcategories'],
+    queryFn:async()=>{
+      return await fetchSubCategories(subcategoryId)
+    }
+  })
+
+    // const response = await fetchSubCategories(subcategoryId)
    
 
-    if(!response){}
-    console.log('categories response', response)
+    // if(!response){}
+    // console.log('categories response', response)
+    if(isLoading) return <p>Loading...</p>
+    if(status === 'error') return <p className="">error in return server</p>
+
+    if(status == 'success') console.log(subcategories)
 
     
 
@@ -25,12 +38,11 @@ export default async function SubCategoriesScreen({subcategoryId}: {subcategoryI
 
       <div className="grid sm:grid-cols-3 lg:grid-cols-4 gap-4">
         {
-          response != null ?
-          response.map(category => ( 
+         
+          subcategories?.map(category => ( 
             <SubCategoriesCard key={category._id}  category={category} />
           ))
-          :
-          <p>No categories found</p>
+         
         }
       </div>
     </div>

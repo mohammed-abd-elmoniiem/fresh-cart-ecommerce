@@ -113,7 +113,7 @@ export default function ProfileScreen() {
             </li>
 
             <li>
-              <Link href="/orders" className="flex items-center gap-3 p-2 rounded-md hover:bg-gray-50">
+              <Link href="/allorders" className="flex items-center gap-3 p-2 rounded-md hover:bg-gray-50">
                 <FontAwesomeIcon icon={faBoxOpen} />
                 <span className="text-sm font-medium">Your orders</span>
               </Link>

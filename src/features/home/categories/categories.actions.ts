@@ -48,13 +48,13 @@ export async function fetchSpecificCategory(categoryId: string): Promise<Categor
 export async function fetchSubCategories(categoryId: string): Promise<Category[] | null > {
 
   const options:AxiosRequestConfig ={
-    url:`https://ecommerce.routemisr.com/api/v1/categories/${categoryId}/subcategories`,
+    url:`https://ecommerce.routemisr.com/api/v1/subcategories`,
     method:'GET'
   }
 
   try{
     const response = await axios.request(options)
-    console.log('Fetched subcategories:', response.data.data)
+    console.log('Fetched subcategories:', response.data)
     return response.data.data
   }catch(error){
     console.error('Error fetching subcategories:', error)

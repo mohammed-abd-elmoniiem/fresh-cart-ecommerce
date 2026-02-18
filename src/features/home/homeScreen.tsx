@@ -6,6 +6,8 @@ import CategoriesScreen from './categories/CategoriesScreen'
 
 
 export default function HomeScreen() {
+
+  
   return (
     <div className='w-full flex flex-col py-6 gap-5'>
         {/* {nav bar} */}

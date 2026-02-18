@@ -1,12 +1,19 @@
+'use client'
 import React from 'react'
 import { fetchCategories } from './categories.actions'
 import CategoriesCard from './categoriesCard'
+import { useQuery } from '@tanstack/react-query'
 
-export default async function CategoriesScreen() {
-    const response = await fetchCategories()
+export default  function CategoriesScreen() {
 
-    if(!response){}
-    console.log('categories response', response)
+  const { data:response , status ,isLoading ,error} = useQuery({
+    queryKey: ['categories'],
+    queryFn: fetchCategories
+  })
+ 
+
+    if(isLoading) return <p>Loading...</p>
+    if(status==='error') return <p>Error loading categories</p>
 
   return (
     <div className='container mx-auto  '>
