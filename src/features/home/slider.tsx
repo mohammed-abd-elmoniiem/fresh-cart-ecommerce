@@ -189,7 +189,7 @@ export default function PremiumSlider() {
       >
         {slides.map((slide) => (
           <SwiperSlide key={slide.id}>
-            <div className="relative h-20 rounded-xl border border-white/30">
+            <div className="relative h-20 rounded-xl border overflow-hidden border-white/30 swiper-pagination-bullet-active">
               <Image
                 src={slide.image}
                 fill
