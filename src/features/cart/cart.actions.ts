@@ -114,9 +114,9 @@ export async function updateCountItemCart(productId:string , count :number):Prom
     
 
     try{
-       const response: CartData= await axios.request(options)
+       const response = await axios.request(options)
        console.log('cart increae qty',response.data)
-       return response
+       return response.data
     }catch(error){
                 const cartData:CartData={
             status: 'error',

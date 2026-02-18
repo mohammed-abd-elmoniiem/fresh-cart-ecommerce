@@ -49,3 +49,26 @@ li > a:hover {
 
   border-radius: 5px;
 }
+
+/* swipper navigation */
+
+span.swiper-pagination-bullet {
+  width: 12px;
+  height: 12px;
+  background-color: white;
+
+  border-radius: 100%;
+  opacity: 1;
+  transition:
+    width 0.7,
+    background-color 0.7;
+  box-shadow: #0a0a0a 0 0 4px;
+}
+
+span.swiper-pagination-bullet.swiper-pagination-bullet-active {
+  opacity: 1;
+  border-radius: 8px;
+  background-color: var(--color-main) !important;
+
+  width: 20px;
+}

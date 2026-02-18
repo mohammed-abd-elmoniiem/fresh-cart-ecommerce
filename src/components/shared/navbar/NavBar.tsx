@@ -48,7 +48,7 @@ export default function NavBar() {
     <div className='container mx-auto px-2 py-1  bg-white sticky top-0 z-50'>
 
       <div className="top  hidden md:flex flex-wrap justify-between text-[12px] font-light capitalize container mx-auto border-b border-dashed  border-neutral-400 ">
-        <ul className="   gap-3">
+        <ul className=" flex">
 
           <li className="">
             <a href="" className="">
@@ -102,7 +102,7 @@ export default function NavBar() {
         </ul>
       </div>
 
-      <div className="center flex justify-between items-center gap-2 flex-wrap  text-sm  capitalize container mx-auto p-2   bg-white">
+      <div className="center flex justify-between items-center gap-2 flex-wrap  text-sm  capitalize container mx-auto p-1   bg-white">
 
         <div className="logo">
 
@@ -281,25 +281,7 @@ export default function NavBar() {
         </div>
       </div>
 
-      <div className="bottom">
-        <ul className="flex gap-2 font-light capitalize">
-
-          <li className="">
-                    <Link href={'/categories'} className="flex flex-col gap-1  justify-center items-center hover:text-main ">
-
-                      category
-                    </Link>
-            </li>
-
-           <li className="">
-                    <Link href={'/brands'} className="flex flex-col gap-1 justify-center items-center hover:text-main ">
-
-                      brands
-                    </Link>
-            </li>
-
-        </ul>
-      </div>
+     
 
     </div>
     // <nav className="bg-black text-blck antialiased">

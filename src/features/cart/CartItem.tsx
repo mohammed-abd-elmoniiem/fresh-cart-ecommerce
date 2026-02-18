@@ -10,6 +10,7 @@ import { useDispatch } from 'react-redux'
 import { clearUserCart, removeItemCart, updateCountItemCart } from './cart.actions'
 import { updateCart } from './cartReducer/cartReducer'
 import Link from 'next/link'
+import toast from 'react-hot-toast'
 
 interface Props {
   product: Product
@@ -37,9 +38,13 @@ export default function CartItem({ product }: Props) {
               dispatch(
                 updateCart(response)
               )
+              if(count > qty)increase()
+                else decrease()
+
+              toast.success('Cart item quantity updated successfully')
             }
             catch(error){
-              console.log('Error updating cart item quantity:', error)
+              toast.error('Error updating cart item quantity:')
             }
   }
 
@@ -78,17 +83,17 @@ export default function CartItem({ product }: Props) {
   return (
     <div  className="flex items-center w-full gap-4 p-2 bg-white rounded-lg shadow-sm border border-neutral-200 relative">
 
-      <Link href={`/product/${product.product.id}`} className=" inset-0 z-10" >
-      <div className="relative w-20 h-20 rounded-md overflow-hidden bg-gray-50">
+     
+      <Link href={`/product/${product._id}`} className="relative w-20 h-20 rounded-md overflow-hidden bg-gray-50">
         <Image src={product.product.imageCover} alt={String(product.product.title ?? 'product')} fill className="object-cover" />
-      </div>
+      </Link>
 
       <div className="flex-1 max-w-full">
         <div className="flex items-start justify-between gap-3">
-          <div className="">
+          <Link href={`/product/${product._id}`} className="">
             <h3 className="text-sm font-light  text-gray-900  break-normal ">{product.product.title}</h3>
             <p className="text-xs text-gray-500 mt-1 break-normal ">{product.product.brand?.name}</p>
-          </div>
+          </Link>
 
           <div className="text-right">
             <div className="text-sm font-semibold text-gray-900">${product.price.toFixed(2)}</div>
@@ -111,7 +116,7 @@ export default function CartItem({ product }: Props) {
               <button
                 type="button"
                 onClick={()=>{
-                  decrease()
+                
                    updateQty(qty-1)
                 }}
                 className="px-3 py-1 text-sm text-gray-700 hover:bg-gray-100 "
@@ -125,7 +130,7 @@ export default function CartItem({ product }: Props) {
               <button
                 type="button"
                 onClick={()=>{
-                  increase()
+                
                    updateQty(qty+1)
                 }}
                 className="px-3 py-1 text-sm text-gray-700 hover:bg-gray-100"
@@ -143,7 +148,7 @@ export default function CartItem({ product }: Props) {
         </div>
       </div>
       
-      </Link>
+      
     </div>
   )
 }

@@ -1,6 +1,7 @@
 
 
 
+import HomeScreen from "../features/home/homeScreen";
 import Products from "../features/home/Products";
 import Categories from "./(dynamic-pages)/categories/page";
 
@@ -13,15 +14,13 @@ export default  function Home() {
   
 
   return (
-    <div className="">
-      <main className="px-4">
+   
+      <main className="">
+        <HomeScreen/>
        
 
-        <Categories/>
-
-        <Products/>
-        
+       
       </main>
-    </div>
+
   );
 }

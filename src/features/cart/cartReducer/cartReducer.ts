@@ -1,3 +1,4 @@
+import { Product } from "../cart.type";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { CartData } from "../cart.type";
 
@@ -31,8 +32,12 @@ const cartSlice = createSlice({
             state.numOfCartItems = action.payload.numOfCartItems
             state.cartId = action.payload.cartId
             state.data = action.payload.data
+            // state.data.products = action.payload.data.products[0].
+        
 
         }
+
+       
 
     }
 

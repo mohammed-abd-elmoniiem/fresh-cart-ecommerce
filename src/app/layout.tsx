@@ -38,11 +38,15 @@ export default async function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${roboto.className} px-1`}
+        className={`${roboto.className}`}
       >
         <Providers >
 
-          <NavBar />
+          <div className="shadow w-full"> 
+            <NavBar />
+          </div>
+
+          
           {children}
 
           <Footer />

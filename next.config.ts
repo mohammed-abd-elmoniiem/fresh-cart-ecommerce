@@ -6,7 +6,11 @@ const nextConfig: NextConfig = {
   /* config options here */
  
   images:{
-    remotePatterns:[new URL('https://ecommerce.routemisr.com/*/**')]
+    remotePatterns:[new URL('https://ecommerce.routemisr.com/*/**'),
+      { protocol: 'https', hostname: 'images.unsplash.com' },
+    { protocol: 'https', hostname: 'images.pexels.com' },
+    { protocol: 'https', hostname: 'unsplash.com' }
+    ]
   }
 };
 
