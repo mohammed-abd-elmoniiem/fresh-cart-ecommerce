@@ -79,7 +79,7 @@ export default function SignUpForm() {
 
 
   return (
-   <form className="grid grid-cols-1 gap-2 bg-gray-50 items-center justify-center  w-1/5 text-[13px] lg:w-1/2  max-w-md p-1 rounded-2xl grow" action="#" onSubmit={handleSubmit(onSubmit)}>
+   <form className="grid grid-cols-1 gap-2 bg-gray-50 items-center justify-center  w-full max-w-md p-1 rounded-2xl grow" action="#" onSubmit={handleSubmit(onSubmit)}>
     <h2 className="capitalize  text-center   text-2xl"> create your account</h2>
 
             <div className=' rounded-md  '>
@@ -148,7 +148,7 @@ export default function SignUpForm() {
                 <input {...register('terms')} type='checkbox' className=""/>
                 <label htmlFor="terms" className="font-light text-neutral-700 text-[12px] m-4">I accept the 
                   
-                  <Link className="font-light text-blue-600" href="terms">Terms and Conditions</Link>
+                  <Link className="font-light text-main" href="terms">Terms and Conditions</Link>
                   
                   </label>
               </div>
@@ -160,7 +160,7 @@ export default function SignUpForm() {
             </div>
 
 
-            <button type="submit" className="bg-blue-600 text-white p-2 rounded-md w-fit mx-auto  text-[17px] flex gap-2 items-center justify-center">
+            <button type="submit" className="bg-main text-white p-2 rounded-md w-fit mx-auto  text-[17px] flex gap-2 items-center justify-center">
               {
                  isSubmitting ?
                  <>
@@ -175,7 +175,7 @@ export default function SignUpForm() {
               }
               Create an account</button>
             <p className=" font-light text-neutral-600 text-center">
-              Already have an account? < Link href="/login" className="font-light text-blue-600">Login here</Link>
+              Already have an account? < Link href="/login" className="font-light text-main">Login here</Link>
             </p>
           </form>
   )

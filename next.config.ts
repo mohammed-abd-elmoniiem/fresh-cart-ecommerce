@@ -9,7 +9,10 @@ const nextConfig: NextConfig = {
     remotePatterns:[new URL('https://ecommerce.routemisr.com/*/**'),
       { protocol: 'https', hostname: 'images.unsplash.com' },
     { protocol: 'https', hostname: 'images.pexels.com' },
-    { protocol: 'https', hostname: 'unsplash.com' }
+    { protocol: 'https', hostname: 'unsplash.com' },{
+      protocol: 'https',
+      hostname: 'illustrations.popsy.co'
+    }
     ]
   }
 };

@@ -104,7 +104,7 @@ export default function LoginForm() {
 
 
   return (
-   <form className="grid grid-cols-1 gap-2 bg-gray-50 grow   text-[13px] w-1/5 sm:w-2/4 rounded-2xl" action="#" onSubmit={handleSubmit(onSubmit)}>
+   <form className="grid grid-cols-1 gap-2 bg-gray-50 grow   text-[13px] w-full max-w-md rounded-2xl" action="#" onSubmit={handleSubmit(onSubmit)}>
     <h2 className="uppercase text-2xl font-light text-center">
       login
     </h2>
@@ -159,7 +159,7 @@ export default function LoginForm() {
             </div>
 
 
-            <button type="submit" className="bg-blue-600 p-2 rounded-md  text-[17px] text-white">
+            <button type="submit" className="bg-main p-2 rounded-md  text-[17px] text-white">
               {
                 isSubmitting ?<>
                 <FontAwesomeIcon icon={faSpinner} spin />
@@ -177,10 +177,10 @@ export default function LoginForm() {
 
             <p className=" font-light text-neutral-600">
               don't have an account? 
-              < Link href="/signup" className="font-light text-blue-600 ml-2">register here</Link>
+              < Link href="/signup" className="font-light text-main ml-2">register here</Link>
             </p>
 
-            <Link href={'/forget-password'} className='text-blue-400 hover:underline'>forget the password</Link>
+            <Link href={'/forget-password'} className='text-main hover:underline'>forget the password</Link>
           </form>
   )
 }

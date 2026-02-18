@@ -21,7 +21,7 @@ export default function Signup() {
   <section className="container mx-auto text-black min-h-screen   flex flex-col items-center justify-center ">
     <div className="flex flex-col items-center justify-center bg-white  rounded-2xl p-2 w-full">
       
-      <div className="w-full bg-white  border border-white flex items-center justify-center md:justify-between gap-2">
+      <div className="w-full bg-white  border border-white flex flex-col md:flex-row items-center justify-center md:justify-center gap-2">
 
         <Welcome  />
         
