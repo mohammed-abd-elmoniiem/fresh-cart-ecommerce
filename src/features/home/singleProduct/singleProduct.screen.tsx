@@ -11,9 +11,48 @@ import { faCar, faCartShopping } from '@fortawesome/free-solid-svg-icons'
 import { addToCart } from '../../cart/cart.actions'
 import { addProductToCart } from '../../cart/cart.servcies'
 import AddButton from './component/AddButton'
+import toast from 'react-hot-toast'
+import { useSelector } from 'react-redux'
+import { stateStype } from '@/src/store/reduxStore/reduxStore'
+import { useQuery } from '@tanstack/react-query'
+import { addToWishlist } from '../../wishlist/wishlist.actions'
+import { queryClient } from '@/src/providers'
 
 export default async function SingleProductScreen({ id }: { id: string }) {
-  const product: productData | null = await getSingleProduct(id)
+  const product: productData | null = await getSingleProduct(id);
+
+
+    const auth = useSelector((state: stateStype) => state.authReducer)
+  
+  
+  
+
+  
+   
+            
+       
+
+    const handleAddToWishlist = async (id:string) => {
+
+    if(auth.isAuthentication){
+          const response =   await addToWishlist(id )
+        
+      if (response.status === 'success') {
+        toast.success('Added to wishlist')
+        queryClient.invalidateQueries({
+          queryKey:['wishlistData']
+        })
+        console.log(response)
+        
+      } else {
+        toast.error('Failed to add to wishlist')
+      }
+    }else{
+      toast.error('you should login first')
+    }
+
+   
+  }
 
 
   if (!product) {
@@ -83,7 +122,15 @@ export default async function SingleProductScreen({ id }: { id: string }) {
 
           <div className="mt-6 flex gap-3">
           <AddButton id={id}/>
-            <button className="px-4 py-3 border border-neutral-200 rounded-md text-sm hover:bg-gray-50">
+            <button className="px-4 py-3 border border-neutral-200 rounded-md text-sm hover:bg-gray-50"
+
+            onClick={()=>{
+                handleAddToWishlist(product._id)
+                
+
+              }}
+            
+            >
               Wishlist
             </button>
           </div>

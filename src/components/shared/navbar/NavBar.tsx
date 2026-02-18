@@ -45,7 +45,7 @@ export default function NavBar() {
 
   const isAuthenticated = useSelector((state:stateStype)=>state.authReducer.isAuthentication)
   return (
-    <div className='container mx-auto px-2 py-1  bg-white sticky top-0 z-50'>
+    <div className='container mx-auto  py-1  bg-white sticky top-0 z-50'>
 
       <div className="top  hidden md:flex flex-wrap justify-between text-[12px] font-light capitalize container mx-auto border-b border-dashed  border-neutral-400 ">
         <ul className=" flex">

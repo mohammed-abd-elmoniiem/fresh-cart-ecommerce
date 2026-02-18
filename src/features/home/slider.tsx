@@ -168,7 +168,7 @@ export default function PremiumSlider() {
               <div className="absolute inset-0 linear-to-r from-black/70 via-black/40 to-transparent flex items-center">
                 <div
                   ref={textRef}
-                  className="text-white max-w-xl px-10 backdrop-blur-md bg-white/10 p-8 rounded-2xl border border-white/20"
+                  className="text-white max-w-xl px-10 backdrop-blur-md bg-neutral-600/30 p-8 rounded-2xl border border-white/20"
                 >
                   <h2 className="text-5xl font-bold mb-4">
                     {category.name}

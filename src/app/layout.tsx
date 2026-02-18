@@ -42,7 +42,7 @@ export default async function RootLayout({
       >
         <Providers >
 
-          <div className="shadow w-full"> 
+          <div className="sticky top-0 w-full z-50"> 
             <NavBar />
           </div>
 

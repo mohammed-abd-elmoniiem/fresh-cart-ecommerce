@@ -9,7 +9,7 @@ import toast from 'react-hot-toast'
 
 import { addProductToCart } from '../../cart/cart.servcies'
 import { updateCart } from '../../cart/cartReducer/cartReducer'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { CartData } from '../../cart/cart.type'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faHeart, faHeartCircleMinus, faHeartPulse } from '@fortawesome/free-solid-svg-icons'
@@ -17,6 +17,7 @@ import { addToWishlist, removeFromWishlist } from '../../wishlist/wishlist.actio
 import { useQuery } from '@tanstack/react-query'
 import { fa } from 'zod/v4/locales'
 import { queryClient } from '@/src/providers'
+import { stateStype } from '@/src/store/reduxStore/reduxStore'
 
 interface CardProps {
   product: productData,
@@ -27,6 +28,8 @@ export default function Card({ product,isWished=false }: CardProps) {
   const image = product.imageCover ?? product.images?.[0] ?? ''
   const price = product.price
   const discounted = product.priceAfterDiscount
+
+  const auth = useSelector((state: stateStype) => state.authReducer)
 
 
 
@@ -53,21 +56,24 @@ export default function Card({ product,isWished=false }: CardProps) {
     
   const handleAddToWishlist = async () => {
 
-    refetch()
+    if(auth.isAuthentication){
 
-    console.log(isEnabled,isError,data)
-   
-    
-    if (status === 'success') {
-      toast.success('Added to wishlist')
-      queryClient.invalidateQueries({
-        queryKey:['wishlistData']
-      })
-      console.log(data)
-      
-    } else {
-      toast.error('Failed to add to wishlist')
+        await refetch()
+      if (status === 'success') {
+        toast.success('Added to wishlist')
+        queryClient.invalidateQueries({
+          queryKey:['wishlistData']
+        })
+        console.log(data)
+        
+      } else {
+        toast.error('Failed to add to wishlist')
+      }
+    }else{
+      toast.error('you should login first')
     }
+
+   
   }
 
   const handleRemoveFromWishlist = async () => {
@@ -157,14 +163,21 @@ export default function Card({ product,isWished=false }: CardProps) {
           className="flex-1 px-3 py-2 bg-main text-white text-sm rounded transition"
 
            onClick={async ()=>{
-                console.log(product.id)
-               const response = await addProductToCart(product.id)
-               if(response.status != 'error'){
-                  dispatch(
-                    updateCart(response)
-                  )
-               }
 
+            if(auth.isAuthentication){
+              console.log(product.id)
+                            const response = await addProductToCart(product.id)
+                            if(response.status != 'error'){
+                                dispatch(
+                                  updateCart(response)
+                                )
+                            }
+
+
+            }else{
+              toast.error('you should login first')
+            }
+               
 
               }}
         >
