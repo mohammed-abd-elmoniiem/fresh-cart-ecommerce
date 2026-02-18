@@ -151,7 +151,7 @@ export default function PremiumSlider() {
                 src={category.image}
                 fill
                 alt={category.slug}
-                className="object-cover scale-110 group-hover:scale-105 transition duration-[3000ms]"
+                className="object-cover scale-110 group-hover:scale-105 transition duration-3000"
               />
 
               {/* Glass Overlay */}
