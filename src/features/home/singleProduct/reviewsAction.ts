@@ -18,17 +18,18 @@ export async function addReviewToProductServer(productId: string, review:NewREvi
     const options:AxiosRequestConfig ={
         url:`https://ecommerce.routemisr.com/api/v1/products/${productId}/reviews`,
         method:'POST',
-        headers:{ token,
-            // "Content-Type":'application/json',
+        headers:{ 
+            token,
+            "Content-Type":'application/json',
            
         },data:review
     }
 
-    console.log({ options })
+    console.log(options )
 
     try{
         const response = await axios.request(options)
-        console.log(response.data)
+        console.log(response)
         return response
     }catch (error) {
         console.error(error)

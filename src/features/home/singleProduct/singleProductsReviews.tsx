@@ -57,7 +57,7 @@ export default function ProductReviews({ reviews, productId }: Props) {
               const response  = await addReviewToProductServer(productId, { review, rating })
 
               console.log(response)
-              queryClient.invalidateQueries({queryKey:['singleProduct']})
+           
               toast.success('your review add successfully')
 
 
@@ -76,7 +76,7 @@ export default function ProductReviews({ reviews, productId }: Props) {
       
   
     }else{
-      toast.error('you must be loged in firt')
+      toast.error('you must be loged in first')
     }
 
     
