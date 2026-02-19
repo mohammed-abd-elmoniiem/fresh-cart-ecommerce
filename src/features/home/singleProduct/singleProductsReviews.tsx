@@ -6,6 +6,7 @@ import { addReviewToProductServer } from './reviewsAction'
 import { useSelector } from 'react-redux'
 import { stateStype } from '@/src/store/reduxStore/reduxStore'
 import { queryClient } from '@/src/providers'
+import toast from 'react-hot-toast'
 
 type Props = {
   productId: string,
@@ -53,13 +54,14 @@ export default function ProductReviews({ reviews, productId }: Props) {
       console.log({ review, rating })
 
         startTransition(async () => {
-        // 🔥 Integrate your API here
+   
 
         try{
               const response  = await addReviewToProductServer(productId, { review, rating })
 
               console.log(response)
               queryClient.invalidateQueries({queryKey:['singleProduct']})
+              toast.success('your review add successfully')
 
 
 
@@ -76,6 +78,8 @@ export default function ProductReviews({ reviews, productId }: Props) {
 
         
       })
+    }else{
+      toast.error('you must be loged in firt')
     }
 
     
