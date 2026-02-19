@@ -16,7 +16,7 @@ export async function addReviewToProductServer(productId: string, review:NewREvi
 
 
     const options:AxiosRequestConfig ={
-        url:`https://ecommerce.routemisr.com/api/v1/products/${productId}/reviews`,
+        url:`https://ecommerce.routemisr.com/api/v1/products/{${productId}}/reviews`,
         method:'POST',
         headers:{ 
             token,
