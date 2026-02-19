@@ -174,7 +174,7 @@ const auth = useSelector((state: stateStype) => state.authReducer)
           </div>
 
           {/* reviews - mounted client component */}
-          <ProductReviews productId={product._id} reviews={(product as any).reviews ?? null} />
+          <ProductReviews productId={id} reviews={(product as any).reviews ?? null} />
         </section>
       </div>
     </div>

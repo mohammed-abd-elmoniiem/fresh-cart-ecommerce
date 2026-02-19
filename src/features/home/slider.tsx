@@ -92,7 +92,7 @@ import toast from 'react-hot-toast'
 //   },
 // ]
 
-export default function PremiumSlider() {
+export default function Slider() {
   const [thumbsSwiper, setThumbsSwiper] = useState<any>(null)
   const textRef = useRef<HTMLDivElement>(null)
   const counterRef = useRef<HTMLSpanElement>(null)
@@ -139,7 +139,7 @@ export default function PremiumSlider() {
     )
   }
 
-  if(categories === undefined || categories === null ){
+  if(!categories  ){
         toast.error('error in loading categories')
         return <></>
        }

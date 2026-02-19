@@ -19,7 +19,7 @@ export default function ProductReviews({ reviews, productId }: Props) {
   const auth = useSelector((state:stateStype)=>state.authReducer)
   const [rating, setRating] = useState(5)
   const [review, setReview] = useState('')
-  const [isPending, startTransition] = useTransition()
+
 
   /* =============================
      Derived Data
@@ -44,17 +44,14 @@ export default function ProductReviews({ reviews, productId }: Props) {
      Submit Handler (Optimistic Ready)
   ============================== */
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault()
+  const handleSubmit = async () => {
+   
     if (!review.trim()) return;
 
     if(auth.isAuthentication){
 
 
       console.log({ review, rating })
-
-        startTransition(async () => {
-   
 
         try{
               const response  = await addReviewToProductServer(productId, { review, rating })
@@ -65,7 +62,7 @@ export default function ProductReviews({ reviews, productId }: Props) {
 
 
 
-            await new Promise((r) => setTimeout(r, 800))
+          
             setReview('')
             setRating(5)
 
@@ -76,8 +73,8 @@ export default function ProductReviews({ reviews, productId }: Props) {
         }
 
 
-        
-      })
+      
+  
     }else{
       toast.error('you must be loged in firt')
     }
@@ -203,7 +200,7 @@ export default function ProductReviews({ reviews, productId }: Props) {
           Write a Review
         </h4>
 
-        <form onSubmit={handleSubmit} className="space-y-6">
+        <div className="space-y-6">
           {/* Rating Selector */}
           <div>
             <label className="text-sm font-medium">
@@ -248,12 +245,16 @@ export default function ProductReviews({ reviews, productId }: Props) {
 
           <button
             type="submit"
-            disabled={isPending}
+          
             className="px-6 py-3 rounded-xl bg-main text-white font-medium hover:bg-main/90 active:scale-[0.98] transition disabled:opacity-50"
+            onClick={()=>{
+              console.log('clicked')
+              handleSubmit()
+            }}
           >
-            {isPending ? 'Submitting...' : 'Submit Review'}
+            Submit Review
           </button>
-        </form>
+        </div>
       </div>
 
       {/* ================= Reviews List ================= */}
