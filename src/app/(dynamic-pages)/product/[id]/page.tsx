@@ -5,7 +5,7 @@ export default async function Product({params}:{params:Promise<{id:string}>}) {
 
   const {id} = await params;
   return (
-    <div>
+    <div className='container mx-auto'>
      
       <SingleProductScreen id={id} />
     </div>
