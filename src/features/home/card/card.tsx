@@ -130,7 +130,7 @@ export default function Card({ product,isWished=false }: CardProps) {
               )}
 
               <div className="text-xs text-gray-500 mt-1">
-                Qty: {product.quantity} · Sold:  { Math.round(product.sold ?? 0) }
+                Qty: {product.quantity} · Sold:  {!!product.sold? Math.round(product.sold ):0 }
               </div>
             </div>
 
