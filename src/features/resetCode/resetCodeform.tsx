@@ -77,7 +77,7 @@ export default function ResetCodeForm() {
 
 
       setTimeout(()=>{
-        router.push('/create-new-password')
+        router.push(`/create-new-password/${values.resetCode}`)
       }, 2000)
      }
   

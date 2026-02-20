@@ -4,7 +4,7 @@ import { createNewPasswordSchema } from './createNewPasswordSchema';
 
 
 
-import { success } from "zod"
+
 
 import axios, { AxiosRequestConfig } from 'axios'
 import { createNewPasswordFormValues } from './types';
@@ -12,7 +12,7 @@ import { getToken } from '../login/cookie/tokenCookie';
 
 
 
-export default async function createNewPasswordRequest(values:createNewPasswordFormValues,email:string):Promise<void>{
+export default async function createNewPasswordRequest(values:createNewPasswordFormValues,code:string):Promise<void>{
 
    const validation =  createNewPasswordSchema.safeParse(values);
        const errors:Record<string ,string>={};
@@ -20,8 +20,7 @@ export default async function createNewPasswordRequest(values:createNewPasswordF
 
    if(validation.success){
 
-          const token = await getToken()
-          console.log(token)
+          
 
          const options:AxiosRequestConfig= {
             url:'https://ecommerce.routemisr.com/api/v1/auth/resetPassword',
@@ -30,13 +29,15 @@ export default async function createNewPasswordRequest(values:createNewPasswordF
 
             data:{
                newPassword:values.newPassword,
-               email
+               email:values.email,
+               resetCode:code
             }
          }
 
          try {
 
              console.log('here update pasword')
+             console.log(options)
             const response = await axios.request(options)
              console.log(response.data)
                

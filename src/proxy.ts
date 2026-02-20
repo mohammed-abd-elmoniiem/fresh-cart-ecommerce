@@ -2,7 +2,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import toast from "react-hot-toast";
 const authRoute = ['/profile','/cart','/checkout','/change-my-password',
-    '/allorders','/order','/forget-password','/verify-reset-code','/wishlist'
+    '/allorders','/order','/wishlist'
 ]
 
 export   function proxy(request: NextRequest) {

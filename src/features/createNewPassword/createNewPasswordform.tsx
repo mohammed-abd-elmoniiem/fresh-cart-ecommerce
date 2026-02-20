@@ -21,7 +21,7 @@ import { stateStype } from '@/src/store/reduxStore/reduxStore'
 
 
 
-export default function CreateNewPasswordForm() {
+export default function CreateNewPasswordForm({code}:{code:string}) {
 
   const router = useRouter()
 
@@ -36,7 +36,8 @@ export default function CreateNewPasswordForm() {
 
       const {register,setError,handleSubmit,formState:{errors,isSubmitting}} = useForm<createNewPasswordFormValues>({
     defaultValues:{
-      
+
+      email:' ',
       newPassword:'123456@aA',
       rePassword:'123456@aA',
 
@@ -55,11 +56,11 @@ export default function CreateNewPasswordForm() {
 
   const onSubmit:SubmitHandler<createNewPasswordFormValues> =async function (values){
   
-      console.log(values , `email:${authData.userInfo?.email}`)
+      console.log(values)
 
     
 
-            const res=  await createNewPasswordRequest(values,authData.userInfo?.email as string)
+            const res=  await createNewPasswordRequest(values,code)
         console.log('res',res)
       
         //  if(res?.success === false){
@@ -120,8 +121,23 @@ export default function CreateNewPasswordForm() {
   return (
    <form className="grid grid-cols-1 gap-2 bg-gray-50 grow   text-[13px] w-1/5 sm:w-2/4 rounded-2xl" action="#" onSubmit={handleSubmit(onSubmit)}>
     <h2 className="uppercase text-2xl font-light text-center">
-      change my password
+      reset my password
     </h2>
+
+                <div className=' rounded-md  w-full'>
+              <label htmlFor="email" className="capitalize font-light text-md ml-1">Your email</label>
+              <input type="email" 
+               className=" bg-white text-black w-full border border-neutral-400  rounded-md px-2 py-1" placeholder="email@example.com"
+
+               {...register('email')}
+
+                />
+              
+              
+              <p className= {` ${ !errors.email && 'hidden'} text-[11px] text-red-500 ml-2` }>{errors.email?.message}</p>
+
+
+            </div>
 
             
          

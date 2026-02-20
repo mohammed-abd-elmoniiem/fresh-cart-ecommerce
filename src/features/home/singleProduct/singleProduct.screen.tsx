@@ -19,19 +19,19 @@ import { addToWishlist } from '../../wishlist/wishlist.actions'
 import { queryClient } from '@/src/providers'
 import Loading from '@/src/app/loading'
 
-export default  function SingleProductScreen({ id }: { id: string }) {
+export default   function SingleProductScreen({product }: { product:productData | null }) {
   // const product: productData | null = await getSingleProduct(id);
-const auth = useSelector((state: stateStype) => state.authReducer)
-    const {data:product,isLoading ,error ,status} = useQuery({
-      queryKey:['singleProduct'],
-      queryFn:async()=>{
-        return await getSingleProduct(id)
-      }
-    })
+// const auth = useSelector((state: stateStype) => state.authReducer)
+//     const {data:product,isLoading ,error ,status} = useQuery({
+//       queryKey:['singleProduct'],
+//       queryFn:async()=>{
+//         return await getSingleProduct(id)
+//       }
+//     })
 
 
-    if(isLoading)return <Loading/>
-    if(status =='error') {
+    // if(isLoading)return <Loading/>
+    if(product == null ) {
       toast.error('cant load the product data,try again!')
     
     }
@@ -46,7 +46,7 @@ const auth = useSelector((state: stateStype) => state.authReducer)
 
     const handleAddToWishlist = async (id:string) => {
 
-    if(auth.isAuthentication){
+
           const response =   await addToWishlist(id )
         
       if (response.status === 'success') {
@@ -59,9 +59,7 @@ const auth = useSelector((state: stateStype) => state.authReducer)
       } else {
         toast.error('Failed to add to wishlist')
       }
-    }else{
-      toast.error('you should login first')
-    }
+   
 
    
   }
@@ -134,7 +132,7 @@ const auth = useSelector((state: stateStype) => state.authReducer)
           </div>
 
           <div className="mt-6 flex gap-3">
-          <AddButton id={id}/>
+          <AddButton id={product._id}/>
             <button className="px-4 py-3 border border-neutral-200 rounded-md text-sm hover:bg-gray-50"
 
             onClick={()=>{
@@ -174,7 +172,7 @@ const auth = useSelector((state: stateStype) => state.authReducer)
           </div>
 
           {/* reviews - mounted client component */}
-          <ProductReviews productId={id} reviews={(product as any).reviews ?? null} />
+          <ProductReviews productId={product._id} reviews={(product as any).reviews ?? null} />
         </section>
       </div>
     </div>

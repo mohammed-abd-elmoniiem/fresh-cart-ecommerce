@@ -5,7 +5,7 @@ import * as zod from 'zod'
 export const createNewPasswordSchema = zod.object({
    
     
-
+  email: zod.string().nonempty('email is required').pipe(zod.email().nonempty('email is required')) ,
      newPassword:zod.string()
         .min(8,'minmum length  is 8')
         .max(55,'max length is 55')

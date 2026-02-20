@@ -1,6 +1,6 @@
 
 'use client'
-import React from 'react'
+import React, { useRef } from 'react'
 import {SubmitHandler, useForm} from 'react-hook-form'
 import { loginFormValues} from '../types'
 // import { onSubmit } from '../services'
@@ -15,7 +15,9 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Link from 'next/link'
 import { setToken } from '../cookie/tokenCookie'
 import { setUserInfo } from '../reducers/authReducer'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
+import { stateStype } from '@/src/store/reduxStore/reduxStore'
+import { current } from '@reduxjs/toolkit'
 
 
 
@@ -23,8 +25,11 @@ export default function LoginForm() {
 
   const router = useRouter()
 
+  
+
   const dispatch = useDispatch()
 
+  const emailRef = useRef(null)
 
 
 
@@ -110,9 +115,9 @@ export default function LoginForm() {
     </h2>
 
             
-             <div className=' rounded-md  w-full'>
+            <div className=' rounded-md  w-full'>
               <label htmlFor="email" className="capitalize font-light text-md ml-1">Your email</label>
-              <input type="email"
+              <input type="email" 
                className=" bg-white text-black w-full border border-neutral-400  rounded-md px-2 py-1" placeholder="email@example.com"
 
                {...register('email')}
@@ -180,7 +185,12 @@ export default function LoginForm() {
               < Link href="/signup" className="font-light text-main ml-2">register here</Link>
             </p>
 
-            <Link href={'/forget-password'} className='text-main hover:underline'>forget the password</Link>
+
+            <Link href={'/forget-password'} className='text-main hover:underline'
+
+         
+            
+            >forget the password</Link>
           </form>
   )
 }
