@@ -6,6 +6,10 @@ export default function Page() {
    
     <div className="container mx-auto flex items-center justify-center">
         <CreateNewPasswordForm code ={'124785'}/>
+
+
+
+       
     </div>
   )
 }
